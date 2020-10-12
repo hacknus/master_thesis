@@ -18,18 +18,31 @@ def values(x0, v0, a0, m, ta, tb):
 
 
 t = np.linspace(0, 0.5, 1000)
-t1 = 1*t[-1]/7
-t2 = 2*t[-1]/7
-t3 = 3*t[-1]/7
-t4 = 4*t[-1]/7
-t5 = 5*t[-1]/7
-t6 = 6*t[-1]/7
-t7 = 7*t[-1]/7
+amax = 2000
+vmax = 2000/9.549
+xmax = 35*80/180*np.pi
+m = 100000
+
+print(amax / m, vmax / amax)
+
+t1 = amax / m
+t2 = vmax / amax - t1 + t1
+t3 = t2 + t1
+print(xmax)
+print("position t3: ", 3*m/2*(t2-t1)*t1**2 + m/2*t1*(t2-t1)**2 + m*t1**3)
+xtogo = xmax - 2*(3*m/2*(t2-t1)*t1**2 + m/2*t1*(t2-t1)**2 + m*t1**3)
+t_const = xtogo / (m*t1*(t2-t1) + m*t1**2)
+print("velocity: ", (m*t1*(t2-t1) + m*t1**2))
+t4 = t3 + t_const
+t5 = t4 + t1
+t6 = t4 + t2
+t7 = t4 + t3
+print(t1, t2, t3, t4, t5, t6, t7)
+
 
 pos = []
 vel = []
 acc = []
-m = 15000 #rad/s2
 
 for i, ti in enumerate(t):
     if ti < t1:
@@ -59,27 +72,31 @@ for i, ti in enumerate(t):
 print("Sanity test:")
 a, v, x = values(0, 0, 0, m, 0, t1)
 print("a(t1) = {:.10f}".format(a))
+print("x(t1) = {:.10f}".format(x))
 a, v, x = values(x, v, a, 0, t1, t2)
 a, v, x = values(x, v, a, -m, t2, t3)
 print("v(t3) = {:.10f}".format(v))
+print("x(t3) = {:.10f}".format(x))
 a, v, x = values(x, v, a, 0, t3, t4)
 a, v, x = values(x, v, a, -m, t4, t5)
 a, v, x = values(x, v, a, 0, t5, t6)
 a, v, x = values(x, v, a, m, t6, t7)
-print("v(t7) = {:.10f}".format(v))
-print("x(t7) = {:.10f}".format(x))
+print("v(t7) = {:.10f}".format(v*9.549))
+print("x(t7) = {:.10f}".format(x/80/np.pi*180))
 
 print("true values:")
-print("v(t3) = {:.10f}".format(max(vel)))
-print("x(t7) = {:.10f}".format(max(pos)))
+print("v(t3) = {:.10f}".format(max(vel)*9.549))
+print("x(t7) = {:.10f}".format(max(pos)/80/np.pi*180))
 
 
 fig, (ax0, ax1, ax2) = plt.subplots(nrows=3, sharex=True)
 ax0.plot(t, np.array(pos)/80/np.pi*180)
+#ax0.plot(t, np.array(pos))
 ax0.set_ylabel("pos [deg]")
 ax1.plot(t, np.array(vel)*9.549)
 ax1.set_ylabel(r"vel [rpm]")
 ax2.plot(t, acc)
 ax2.set_ylabel(r"acc [rad/s$^2$]")
 ax2.set_xlabel("t [s]")
+plt.savefig("curves.pdf", transparent=True)
 plt.show()
