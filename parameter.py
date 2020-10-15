@@ -18,8 +18,9 @@ def valid(na, nv, m, xmax, tmax):
 
 maxv = 5000
 maxa = 6000
+maxd = 8000
 m = 100000    # in rad per cubic seconds
-xmax = 35*80/180*np.pi
+xmax = 0.68*2*80/180*np.pi
 tmax = 0.5
 
 grid = valid(maxa, maxv, m, xmax, tmax)

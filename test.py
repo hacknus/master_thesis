@@ -18,8 +18,8 @@ def values(x0, v0, a0, m, ta, tb):
 
 
 t = np.linspace(0, 0.5, 1000)
-amax = 2000
-vmax = 2000/9.549
+amax = 3000
+vmax = 3000/9.549
 xmax = 35*80/180*np.pi
 m = 100000
 
