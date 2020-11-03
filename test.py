@@ -16,12 +16,14 @@ def values(x0, v0, a0, m, ta, tb):
     at = a0 + m*(tb - ta)
     return at, vt, xt
 
-
-t = np.linspace(0, 0.5, 1000)
-amax = 3000
-vmax = 3000/9.549
-xmax = 35*80/180*np.pi
-m = 100000
+time_scale = 1000*1000
+pos_scale = time_scale**3/100000
+t = np.linspace(0, 0.5*time_scale, int(0.5*time_scale))
+amax = 1500/time_scale**2*pos_scale
+vmax = 1500/9.549/time_scale*pos_scale
+xmax = 35*80/180*np.pi*pos_scale
+m = 100000/time_scale**3*pos_scale
+print(f"m: {m}")
 
 print(amax / m, vmax / amax)
 
@@ -39,35 +41,52 @@ t6 = t4 + t2
 t7 = t4 + t3
 print(t1, t2, t3, t4, t5, t6, t7)
 
-
 pos = []
 vel = []
 acc = []
 
+dt = t[1] - t[0]
+print(f"dt: {dt}")
+n_a = [0]
+n_v = [0]
+n_x = [0]
+
 for i, ti in enumerate(t):
-    if ti < t1:
+    if ti <= t1:
         a, v, x = values(0, 0, 0, m, 0, ti)
+        atemp = m*dt
         t1i = i
     elif ti >= t1 and ti < t2:
         a, v, x = values(pos[t1i], vel[t1i], m * t1, 0, t1, ti)
+        atemp = 0
         t2i = i
     elif ti >= t2 and ti < t3:
         a, v, x = values(pos[t2i], vel[t2i], m * t1, -m, t2, ti)
+        atemp = -m*dt
         t3i = i
     elif ti >= t3 and ti < t4:
         a, v, x = values(pos[t3i], vel[t3i], 0, 0, t3, ti)
+        atemp = 0
         t4i = i
     elif ti >= t4 and ti < t5:
         a, v, x = values(pos[t4i], vel[t4i], 0, -m, t4, ti)
+        atemp = -m*dt
         t5i = i
     elif ti >= t5 and ti < t6:
         a, v, x = values(pos[t5i], vel[t5i], -m*(t5-t4), 0, t5, ti)
+        atemp = 0
         t6i = i
-    elif ti >= t6 and ti <= t7:
+    elif ti >= t6 and ti < t7:
         a, v, x = values(pos[t6i], vel[t6i], -m*(t5-t4), m, t6, ti)
+        atemp = m*dt
+    else:
+        atemp = 0
     pos.append(x)
     vel.append(v)
     acc.append(a)
+    n_a.append(n_a[-1] + atemp)
+    n_v.append(n_v[-1] + n_a[-1] * dt)
+    n_x.append(n_x[-1] + n_v[-1] * dt + n_a[-1]/2*dt**2)
 
 print("Sanity test:")
 a, v, x = values(0, 0, 0, m, 0, t1)
@@ -85,17 +104,20 @@ print("v(t7) = {:.10f}".format(v*9.549))
 print("x(t7) = {:.10f}".format(x/80/np.pi*180))
 
 print("true values:")
-print("v(t3) = {:.10f}".format(max(vel)*9.549))
-print("x(t7) = {:.10f}".format(max(pos)/80/np.pi*180))
-
+print(f"v(t3) = {max(vel)*9.549:.10f}, {max(n_v)*9.549:.10f}")
+print(f"v(t7) = {vel[-1]*9.549:.10f}, {n_v[-1]*9.549:.10f}")
+print(f"x(t7) = {max(pos)/80/np.pi*180:.10f}, {max(n_x)/80/np.pi*180:.10f}")
 
 fig, (ax0, ax1, ax2) = plt.subplots(nrows=3, sharex=True)
 ax0.plot(t, np.array(pos)/80/np.pi*180)
+ax0.plot(t, np.array(n_x[1:])/80/np.pi*180,ls="--")
 #ax0.plot(t, np.array(pos))
 ax0.set_ylabel("pos [deg]")
 ax1.plot(t, np.array(vel)*9.549)
+ax1.plot(t, np.array(n_v[1:])*9.549,ls="--")
 ax1.set_ylabel(r"vel [rpm]")
 ax2.plot(t, acc)
+ax2.plot(t, n_a[1:],ls="--")
 ax2.set_ylabel(r"acc [rad/s$^2$]")
 ax2.set_xlabel("t [s]")
 plt.savefig("curves.pdf", transparent=True)
