@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/home/linus/Documents/Xilinx/blink/impact.xsl
+OUTFILE=/home/linus/Documents/Xilinx/blink/impact.xsl
+FAMILY=Multiple
+PART=Multiple
+WORKINGDIR=/home/linus/Documents/Xilinx/blink
+LICENSE=iMPACT
+USER_INFO=iMPACT

@@ -1,0 +1,68 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Sun Nov  1 12:00:25 2020
+# Process ID: 5173
+# Log file: /home/linus/Documents/Xilinx/blink/planAhead_run_5/planAhead.log
+# Journal file: /home/linus/Documents/Xilinx/blink/planAhead_run_5/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source /home/linus/Documents/Xilinx/blink/pa.fromHdl.tcl
+# create_project -name blink -dir "/home/linus/Documents/Xilinx/blink/planAhead_run_5" -part xc3s500efg320-4
+# set_param project.pinAheadLayout yes
+# set srcset [get_property srcset [current_run -impl]]
+# set_property target_constrs_file "top_level.ucf" [current_fileset -constrset]
+Adding file '/home/linus/Documents/Xilinx/blink/top_level.ucf' to fileset 'constrs_1'
+# set hdlfile [add_files [list {top_level.vhd}]]
+# set_property file_type VHDL $hdlfile
+# set_property library work $hdlfile
+# set_property top top_level $srcset
+# add_files [list {top_level.ucf}] -fileset [get_property constrset [current_run]]
+# open_rtl_design -part xc3s500efg320-4
+Using Verific elaboration
+Parsing VHDL file "/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/lib/synplify/synattr.vhd" into library synplify
+Parsing VHDL file "/home/linus/Documents/Xilinx/blink/top_level.vhd" into library work
+INFO: [Designutils 20-910] Reading macro library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn
+Parsing EDIF File [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Finished Parsing EDIF File [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/spartan3e/spartan3e/hd_int_macros.edn]
+Loading clock regions from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/xc3s500e/ClockRegion.xml
+Loading clock buffers from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/xc3s500e/ClockBuffers.xml
+Loading package from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/xc3s500e/fg320/Package.xml
+Loading io standards from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/spartan3e/IOStandards.xml
+INFO: [Device 21-19] Loading pkg sso from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/xc3s500e/fg320/SSORules.xml
+Loading list of drcs for the architecture : /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/./parts/xilinx/spartan3e/spartan3e/drc.xml
+INFO: [Timing 38-77] Reading timing library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+INFO: [Timing 38-34] Done reading timing library /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/spartan3e/spartan3e/spartan3e-4.lib.
+Parsing UCF File [/home/linus/Documents/Xilinx/blink/top_level.ucf]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[4]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:36]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[5]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:37]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[6]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:38]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[7]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:39]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[7]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:43]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[6]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:44]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[5]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:45]
+CRITICAL WARNING: [Constraints 18-11] Could not find net or pin 'LEDs[4]' [/home/linus/Documents/Xilinx/blink/top_level.ucf:46]
+Finished Parsing UCF File [/home/linus/Documents/Xilinx/blink/top_level.ucf]
+INFO: [Designutils 20-20] Invalid constraints found, use command 'write_ucf -constraints invalid <file>' to save all the invalid constraints to a file
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Phase 0 | Netlist Checksum: 6be1bd42
+open_rtl_design: Time (s): cpu = 00:00:07 ; elapsed = 00:00:05 . Memory (MB): peak = 2831.301 ; gain = 109.379
+update_compile_order -fileset sim_1
+exit
+ERROR: [#UNDEF] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+ (See /home/linus/Documents/Xilinx/blink/planAhead_pid5173.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Sun Nov  1 12:00:50 2020...
+INFO: [Common 17-83] Releasing license: PlanAhead

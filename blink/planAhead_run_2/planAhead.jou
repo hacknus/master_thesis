@@ -1,0 +1,18 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Fri Oct 30 05:40:26 2020
+# Process ID: 23938
+# Log file: /home/linus/Documents/Xilinx/blink/planAhead_run_2/planAhead.log
+# Journal file: /home/linus/Documents/Xilinx/blink/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/linus/Documents/Xilinx/blink/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin L13 [get_ports SW0]
+endgroup
+set_property iostandard LVTTL [get_ports [list SW0]]
+set_property is_loc_fixed false [get_ports [list  SW0]]
+set_property is_loc_fixed true [get_ports [list  SW0]]
+save_constraints

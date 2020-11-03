@@ -1,0 +1,8 @@
+INTSTYLE=impact
+INFILE=/home/linus/Documents/Xilinx/tutorial_1/impact.xsl
+OUTFILE=/home/linus/Documents/Xilinx/tutorial_1/impact.xsl
+FAMILY=Multiple
+PART=Multiple
+WORKINGDIR=/home/linus/Documents/Xilinx/tutorial_1
+LICENSE=iMPACT
+USER_INFO=iMPACT

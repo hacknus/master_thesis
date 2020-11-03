@@ -1,0 +1,16 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Fri Oct 30 06:06:45 2020
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "LED" LOCATE = SITE "C11" LEVEL 1;
+COMP "SW0" LOCATE = SITE "L13" LEVEL 1;
+COMP "CLK_50MHz" LOCATE = SITE "C9" LEVEL 1;
+COMP "LEDs<0>" LOCATE = SITE "F12" LEVEL 1;
+COMP "LEDs<1>" LOCATE = SITE "E12" LEVEL 1;
+COMP "LEDs<2>" LOCATE = SITE "E11" LEVEL 1;
+COMP "LEDs<3>" LOCATE = SITE "F11" LEVEL 1;
+NET "CLK_50MHz_BUFGP/IBUFG" BEL "CLK_50MHz_BUFGP/BUFG.GCLKMUX"
+        USELOCALCONNECT;
+SCHEMATIC END;
+

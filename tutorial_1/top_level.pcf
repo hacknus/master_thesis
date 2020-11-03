@@ -1,0 +1,17 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Tue Sep 29 05:20:15 2020
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "SW0" LOCATE = SITE "L13" LEVEL 1;
+COMP "SW1" LOCATE = SITE "L14" LEVEL 1;
+COMP "SW2" LOCATE = SITE "H18" LEVEL 1;
+COMP "SW3" LOCATE = SITE "N17" LEVEL 1;
+COMP "LEDs<0>" LOCATE = SITE "F11" LEVEL 1;
+COMP "LEDs<1>" LOCATE = SITE "E11" LEVEL 1;
+COMP "LEDs<2>" LOCATE = SITE "E12" LEVEL 1;
+COMP "PUSH_BUTTON<0>" LOCATE = SITE "H13" LEVEL 1;
+COMP "LEDs<3>" LOCATE = SITE "F12" LEVEL 1;
+COMP "PUSH_BUTTON<1>" LOCATE = SITE "V4" LEVEL 1;
+SCHEMATIC END;
+

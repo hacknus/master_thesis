@@ -1,0 +1,26 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Sun Nov  1 15:31:30 2020
+# Process ID: 4362
+# Log file: /home/linus/Documents/Xilinx/profile/planAhead_run_2/planAhead.log
+# Journal file: /home/linus/Documents/Xilinx/profile/planAhead_run_2/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from /opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [/opt/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source /home/linus/Documents/Xilinx/profile/pa.fromHdl.tcl
+# create_project -name profile -dir "/home/linus/Documents/Xilinx/profile/planAhead_run_2" -part xc3s500efg320-4
+ERROR: [Common 17-53] User Exception: Project already exists on disk, please use '-force' option to overwrite: 
+     /home/linus/Documents/Xilinx/profile/planAhead_run_2/profile.ppr
+     /home/linus/Documents/Xilinx/profile/planAhead_run_2/profile.data
+
+    while executing
+"create_project -name profile -dir "/home/linus/Documents/Xilinx/profile/planAhead_run_2" -part xc3s500efg320-4"
+    (file "/home/linus/Documents/Xilinx/profile/pa.fromHdl.tcl" line 4)
+exit
+INFO: [Common 17-206] Exiting PlanAhead at Sun Nov  1 15:32:08 2020...
+INFO: [Common 17-83] Releasing license: PlanAhead

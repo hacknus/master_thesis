@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=/home/linus/Documents/Xilinx/profile/top_level.ncd
+OUTFILE=/home/linus/Documents/Xilinx/profile/top_level.bit
+FAMILY=Spartan3E
+PART=xc3s500e-4fg320
+WORKINGDIR=/home/linus/Documents/Xilinx/profile
+LICENSE=WebPack
+USER_INFO=212032225_0_0_970

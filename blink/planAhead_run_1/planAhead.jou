@@ -1,0 +1,48 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Fri Oct 30 05:06:21 2020
+# Process ID: 22162
+# Log file: /home/linus/Documents/Xilinx/blink/planAhead_run_1/planAhead.log
+# Journal file: /home/linus/Documents/Xilinx/blink/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/linus/Documents/Xilinx/blink/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin F12 [get_ports {LEDs[3]}]
+endgroup
+startgroup
+set_property package_pin E12 [get_ports {LEDs[2]}]
+endgroup
+startgroup
+set_property package_pin F11 [get_ports {LEDs[1]}]
+endgroup
+startgroup
+set_property package_pin E12 [get_ports {LEDs[2]}]
+endgroup
+startgroup
+set_property package_pin E11 [get_ports {LEDs[0]}]
+endgroup
+startgroup
+set_property package_pin F11 [get_ports {LEDs[1]}]
+endgroup
+startgroup
+set_property package_pin E11 [get_ports {LEDs[0]}]
+endgroup
+set_property package_pin "" [get_ports [list  CLK_50MHz]]
+set_property package_pin "" [get_ports [list  LED]]
+set_property iostandard LVTTL [get_ports [list {LEDs[3]} {LEDs[2]} {LEDs[1]} {LEDs[0]}]]
+startgroup
+set_property package_pin C11 [get_ports LED]
+endgroup
+set_property iostandard LVCMOS33 [get_ports [list LED]]
+set_property iostandard LVTTL [get_ports [list LED]]
+startgroup
+set_property package_pin A10 [get_ports CLK_50MHz]
+endgroup
+startgroup
+set_property package_pin C9 [get_ports CLK_50MHz]
+endgroup
+set_property iostandard LVTTL [get_ports [list CLK_50MHz]]
+save_constraints
