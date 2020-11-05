@@ -62,10 +62,10 @@ class Cordic:
 
 if __name__ == "__main__":
 
-    C = Cordic(35, 100000000000)
-    phis = np.linspace(-np.pi/2, np.pi/2, 100)
+    C = Cordic(30, 1e9)
+    phis = np.linspace(-np.pi/2, np.pi/2, 10)
 
     for phi in phis:
         s = np.sin(phi)
         c = C.sin(phi)
-        print(f" sin({phi/np.pi*180:.2f}°) = {s:.10f}, cordic phi = {c:.10f}")
+        print(f"sin({phi/np.pi*180:.2f}°): true = {s:.10f}, cordic = {c:.10f}")
