@@ -1,49 +1,71 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 
+class Cordic:
 
-import math
+    def __init__(self, N, scale):
+        self.N = N
+        self.scale = scale
 
-# I know CORDIC is only valid for inputs between
-# -pi/2 and pi/2; I am not exactly sure what I need
-# to do add to make it where any input is acceptable
-# I believe is keep on adding/subtracting pi, but I don't
-# get why this works?
-def cordic_trig(beta,N=40):
-    # in hardware, put this in a table.
-    def K_vals(n):
-        K = []
-        acc = 1.0
-        for i in range(0, n):
-            acc = acc * (1.0/np.sqrt(1 + 2.0**(-2*i)))
-            K.append(acc)
-        return K
+        self.n = np.arange(N)
+        atans = np.arctan(2.0 ** (-1 * self.n))
+        k = []
+        value = 1.0
+        for i in self.n:
+            value = value * np.sqrt(1.0 + 2.0 ** (-2 * i))
+            k.append(1.0 / value)
 
-    #K = K_vals(N)
-    K = 0.6072529350088812561694
-    # emulation for hardware lookup table
-    atans = [np.arctan(2.0**(-i)) for i in range(0,N)]
-    #print K
-    #print atans
-    x = 1
-    y = 0
+        k = np.array(k) * scale
+        atans = np.array(atans) * scale
+        self.k = np.array(k, dtype=np.int)
+        self.atans = np.array(atans, dtype=np.int)
+        print("k:")
+        print(self.k)
+        print("atans:")
+        print(self.atans)
 
-    for i in range(0,N):
-        d = 1.0
-        if beta < 0:
-            d = -1.0
+    def sin(self, phi):
 
-        x = (x - (d*(2.0**(-i))*y))
-        y = ((d*(2.0**(-i))*x) + y)
-        # in hardware put the atan values in a table
-        beta = beta - (d*np.arctan(2**(-i)))
-    return (K*x, K*y)
+        if phi > np.pi and phi <= 2*np.pi:
+            phi -= np.pi
+        phi = phi * self.scale
+        phi = int(phi)
 
-if __name__ == '__main__':
-    beta = math.pi/6.0
-    print("Actual cos(%f) = %f" % (beta, np.cos(beta)))
-    print("Actual sin(%f) = %f" % (beta, np.sin(beta)))
-    cos_val, sin_val = cordic_trig(beta)
-    print("CORDIC cos(%f) = %f" % (beta, cos_val))
-    print("CORDIC sin(%f) = %f" % (beta, sin_val))
+        Vx = 1.0 * self.scale
+        Vy = 0.0
+        for i in self.n:
+            Vxold = Vx
+            Vyold = Vy
+            if phi < 0:
+                t = Vyold
+                for j in range(i):
+                    t = t / 2
+                Vx = Vxold + t
+                t = Vxold
+                for j in range(i):
+                    t = t / 2
+                Vy = Vyold - t
+                phi = phi + self.atans[i]
+            else:
+                t = Vyold
+                for j in range(i):
+                    t = t / 2
+                Vx = Vxold - t
+                t = Vxold
+                for j in range(i):
+                    t = t / 2
+                Vy = Vyold + t
+                phi = phi - self.atans[i]
+        Vx = Vx * self.k[i] / self.scale ** 2
+        Vy = Vy * self.k[i] / self.scale ** 2
+        return Vy
+
+if __name__ == "__main__":
+
+    C = Cordic(30, 1e9)
+    phis = np.linspace(-np.pi/2, np.pi/2, 10)
+
+    for phi in phis:
+        s = np.sin(phi)
+        c = C.sin(phi)
+        print(f"sin({phi/np.pi*180:.2f}°): true = {s:.10f}, cordic = {c:.10f}")
