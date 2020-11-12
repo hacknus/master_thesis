@@ -1,5 +1,6 @@
 import numpy as np
-
+import sys
+import time
 
 class Cordic:
 
@@ -17,55 +18,66 @@ class Cordic:
 
         k = np.array(k) * scale
         atans = np.array(atans) * scale
-        self.k = np.array(k, dtype=np.int)
+        self.k = int(k[-1])
         self.atans = np.array(atans, dtype=np.int)
         print("k:")
         print(self.k)
         print("atans:")
-        print(self.atans)
+        print(list(self.atans))
 
     def sin(self, phi):
 
-        if phi > np.pi and phi <= 2*np.pi:
-            phi -= np.pi
-        phi = phi * self.scale
-        phi = int(phi)
+        sign = 1
+        if phi > int(np.pi * self.scale / 2) and phi < int(np.pi * self.scale * 3 / 2):
+            phi = phi - int(np.pi * self.scale)
+            sign = -1
+        # elif phi > int(np.pi * self.scale) and phi < int(np.pi * self.scale * 3 / 2):
+        #     phi = phi - int(np.pi * self.scale)
+        #     sign = -1
+        elif phi > int(np.pi * self.scale * 3 / 2):
+            phi = phi - int(np.pi * self.scale * 2)
+            sign = 1
 
-        Vx = 1.0 * self.scale
-        Vy = 0.0
+        """
+        if phi < -int(np.pi * self.scale / 2):
+            phi = phi + int(np.pi * self.scale)
+            sign = -1
+        """
+
+        Vx = self.scale
+        Vy = 0
         for i in self.n:
             Vxold = Vx
             Vyold = Vy
             if phi < 0:
                 t = Vyold
-                for j in range(i):
-                    t = t / 2
+                t = t >> i
                 Vx = Vxold + t
                 t = Vxold
-                for j in range(i):
-                    t = t / 2
+                t = t >> i
                 Vy = Vyold - t
                 phi = phi + self.atans[i]
             else:
                 t = Vyold
-                for j in range(i):
-                    t = t / 2
+                t = t >> i
                 Vx = Vxold - t
                 t = Vxold
-                for j in range(i):
-                    t = t / 2
+                t = t >> i
                 Vy = Vyold + t
                 phi = phi - self.atans[i]
-        Vx = Vx * self.k[i] / self.scale ** 2
-        Vy = Vy * self.k[i] / self.scale ** 2
-        return Vy
+        Vy = (Vy >> 13) * self.k/int(self.scale/2**13)
+        return Vy*sign
 
 if __name__ == "__main__":
 
-    C = Cordic(30, 1e9)
-    phis = np.linspace(-np.pi/2, np.pi/2, 10)
-
+    C = Cordic(20, 10000000)
+    phis = np.linspace(0, 2*np.pi, 10) % (2*np.pi) * C.scale
+    phis = np.array(phis, dtype=np.int)
     for phi in phis:
-        s = np.sin(phi)
+        s = np.sin(phi/ C.scale)
         c = C.sin(phi)
-        print(f"sin({phi/np.pi*180:.2f}°): true = {s:.10f}, cordic = {c:.10f}")
+        print(f"sin({phi/np.pi*180/C.scale:.2f}°): true = {s:.10f}, cordic = {c / C.scale:.10f}")
+        #string = int(c*20+20)*" " + int(20-c*20)*"#"
+        #sys.stdout.write(f"\r \r {string}")
+        #sys.stdout.flush()
+        #time.sleep(0.1)
