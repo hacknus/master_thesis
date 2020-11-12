@@ -1,0 +1,1175 @@
+Release 14.7 - xst P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+--> 
+Parameter TMPDIR set to xst/projnav.tmp
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.05 secs
+ 
+--> 
+Parameter xsthdpdir set to xst
+
+
+Total REAL time to Xst completion: 0.00 secs
+Total CPU time to Xst completion: 0.05 secs
+ 
+--> 
+Reading design: top_level.prj
+
+TABLE OF CONTENTS
+  1) Synthesis Options Summary
+  2) HDL Compilation
+  3) Design Hierarchy Analysis
+  4) HDL Analysis
+  5) HDL Synthesis
+     5.1) HDL Synthesis Report
+  6) Advanced HDL Synthesis
+     6.1) Advanced HDL Synthesis Report
+  7) Low Level Synthesis
+  8) Partition Report
+  9) Final Report
+	9.1) Device utilization summary
+	9.2) Partition Resource Summary
+	9.3) TIMING REPORT
+
+
+=========================================================================
+*                      Synthesis Options Summary                        *
+=========================================================================
+---- Source Parameters
+Input File Name                    : "top_level.prj"
+Input Format                       : mixed
+Ignore Synthesis Constraint File   : NO
+
+---- Target Parameters
+Output File Name                   : "top_level"
+Output Format                      : NGC
+Target Device                      : xc3s500e-4-fg320
+
+---- Source Options
+Top Module Name                    : top_level
+Automatic FSM Extraction           : YES
+FSM Encoding Algorithm             : Auto
+Safe Implementation                : No
+FSM Style                          : LUT
+RAM Extraction                     : Yes
+RAM Style                          : Auto
+ROM Extraction                     : Yes
+Mux Style                          : Auto
+Decoder Extraction                 : YES
+Priority Encoder Extraction        : Yes
+Shift Register Extraction          : YES
+Logical Shifter Extraction         : YES
+XOR Collapsing                     : YES
+ROM Style                          : Auto
+Mux Extraction                     : Yes
+Resource Sharing                   : YES
+Asynchronous To Synchronous        : NO
+Multiplier Style                   : Auto
+Automatic Register Balancing       : No
+
+---- Target Options
+Add IO Buffers                     : YES
+Global Maximum Fanout              : 100000
+Add Generic Clock Buffer(BUFG)     : 24
+Register Duplication               : YES
+Slice Packing                      : YES
+Optimize Instantiated Primitives   : NO
+Use Clock Enable                   : Yes
+Use Synchronous Set                : Yes
+Use Synchronous Reset              : Yes
+Pack IO Registers into IOBs        : Auto
+Equivalent register Removal        : YES
+
+---- General Options
+Optimization Goal                  : Speed
+Optimization Effort                : 1
+Keep Hierarchy                     : No
+Netlist Hierarchy                  : As_Optimized
+RTL Output                         : Yes
+Global Optimization                : AllClockNets
+Read Cores                         : YES
+Write Timing Constraints           : NO
+Cross Clock Analysis               : NO
+Hierarchy Separator                : /
+Bus Delimiter                      : <>
+Case Specifier                     : Maintain
+Slice Utilization Ratio            : 100
+BRAM Utilization Ratio             : 100
+Verilog 2001                       : YES
+Auto BRAM Packing                  : NO
+Slice Utilization Ratio Delta      : 5
+
+=========================================================================
+
+
+=========================================================================
+*                          HDL Compilation                              *
+=========================================================================
+Compiling vhdl file "/home/linus/Documents/Xilinx/master_thesis/cordic/top_level.vhd" in Library work.
+Entity <top_level> compiled.
+Entity <top_level> (Architecture <behavioral>) compiled.
+
+=========================================================================
+*                     Design Hierarchy Analysis                         *
+=========================================================================
+Analyzing hierarchy for entity <top_level> in library <work> (architecture <behavioral>).
+
+
+=========================================================================
+*                            HDL Analysis                               *
+=========================================================================
+Analyzing Entity <top_level> in library <work> (Architecture <behavioral>).
+INFO:Xst:2679 - Register <LEDs<0>> in unit <top_level> has a constant value of 0 during circuit operation. The register is replaced by logic.
+Entity <top_level> analyzed. Unit <top_level> generated.
+
+
+=========================================================================
+*                           HDL Synthesis                               *
+=========================================================================
+
+Performing bidirectional port resolution...
+
+Synthesizing Unit <top_level>.
+    Related source file is "/home/linus/Documents/Xilinx/master_thesis/cordic/top_level.vhd".
+    Found 7-bit register for signal <LEDs<7:1>>.
+    Found 32-bit up accumulator for signal <alpha>.
+    Found 32-bit comparator greater for signal <alpha$cmp_gt0000> created at line 116.
+    Found 1-bit register for signal <CLK_1Hz>.
+    Found 32-bit comparator greater for signal <CLK_1Hz$cmp_gt0000> created at line 113.
+    Found 32-bit up counter for signal <counter>.
+    Found 32-bit comparator greatequal for signal <LEDs_1$cmp_ge0000> created at line 127.
+    Found 32-bit comparator less for signal <LEDs_1$cmp_lt0000> created at line 127.
+    Found 32-bit comparator greatequal for signal <LEDs_2$cmp_ge0000> created at line 130.
+    Found 32-bit comparator less for signal <LEDs_2$cmp_lt0000> created at line 130.
+    Found 32-bit comparator greatequal for signal <LEDs_3$cmp_ge0000> created at line 133.
+    Found 32-bit comparator less for signal <LEDs_3$cmp_lt0000> created at line 133.
+    Found 32-bit comparator greatequal for signal <LEDs_4$cmp_ge0000> created at line 136.
+    Found 32-bit comparator less for signal <LEDs_4$cmp_lt0000> created at line 136.
+    Found 32-bit comparator greatequal for signal <LEDs_5$cmp_ge0000> created at line 139.
+    Found 32-bit comparator less for signal <LEDs_5$cmp_lt0000> created at line 139.
+    Found 32-bit comparator greatequal for signal <LEDs_6$cmp_ge0000> created at line 142.
+    Found 32-bit comparator less for signal <LEDs_6$cmp_lt0000> created at line 142.
+    Found 32-bit comparator greater for signal <phi$cmp_gt0000> created at line 77.
+    Found 32-bit comparator less for signal <phi$cmp_lt0000> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0001> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0002> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0003> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0004> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0005> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0006> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0007> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0008> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0009> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0010> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0011> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0012> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0013> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0014> created at line 87.
+    Found 32-bit comparator less for signal <phi$cmp_lt0015> created at line 87.
+    Found 32-bit 4-to-1 multiplexer for signal <phi$mux0001> created at line 75.
+    Found 32-bit addsub for signal <phi$mux0002> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0003> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0004> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0005> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0006> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0007> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0008> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0009> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0010> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0011> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0012> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0013> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0014> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0015> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0016> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0017> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0018> created at line 87.
+    Found 32-bit addsub for signal <phi$mux0019> created at line 87.
+    Found 32-bit subtractor for signal <phi$share0000> created at line 75.
+    Found 32-bit register for signal <ret>.
+    Found 34x64-bit multiplier for signal <ret$mult0003> created at line 105.
+    Found 32x2-bit multiplier for signal <ret$mult0004> created at line 105.
+    Found 32-bit comparator greater for signal <sign$cmp_gt0000> created at line 75.
+    Found 32-bit comparator lessequal for signal <sign$cmp_le0000> created at line 75.
+    Found 32-bit comparator less for signal <Vx$cmp_lt0000> created at line 87.
+    Found 32-bit adder carry in for signal <Vx$mux0000> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0001> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0002> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0003> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0004> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0005> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0006> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0007> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0008> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0009> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0010> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0011> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0012> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0013> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0014> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0015> created at line 87.
+    Found 32-bit addsub for signal <Vx$mux0016> created at line 87.
+    Found 32-bit comparator less for signal <Vy$cmp_lt0000> created at line 87.
+    Found 32-bit comparator less for signal <Vy$cmp_lt0001> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0001> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0002> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0003> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0004> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0005> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0006> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0007> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0008> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0009> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0010> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0011> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0012> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0013> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0014> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0015> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0016> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0017> created at line 87.
+    Found 32-bit addsub for signal <Vy$mux0018> created at line 87.
+    Summary:
+	inferred   1 Counter(s).
+	inferred   1 Accumulator(s).
+	inferred  40 D-type flip-flop(s).
+	inferred  54 Adder/Subtractor(s).
+	inferred   2 Multiplier(s).
+	inferred  36 Comparator(s).
+	inferred  32 Multiplexer(s).
+Unit <top_level> synthesized.
+
+INFO:Xst:1767 - HDL ADVISOR - Resource sharing has identified that some arithmetic operations in this design can share the same physical resources for reduced device utilization. For improved clock frequency you may try to disable resource sharing.
+
+=========================================================================
+HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 2
+ 32x2-bit multiplier                                   : 1
+ 34x64-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 54
+ 32-bit adder carry in                                 : 1
+ 32-bit addsub                                         : 52
+ 32-bit subtractor                                     : 1
+# Counters                                             : 1
+ 32-bit up counter                                     : 1
+# Accumulators                                         : 1
+ 32-bit up accumulator                                 : 1
+# Registers                                            : 9
+ 1-bit register                                        : 8
+ 32-bit register                                       : 1
+# Comparators                                          : 36
+ 32-bit comparator greatequal                          : 6
+ 32-bit comparator greater                             : 4
+ 32-bit comparator less                                : 25
+ 32-bit comparator lessequal                           : 1
+# Multiplexers                                         : 1
+ 32-bit 4-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                       Advanced HDL Synthesis                          *
+=========================================================================
+
+
+=========================================================================
+Advanced HDL Synthesis Report
+
+Macro Statistics
+# Multipliers                                          : 2
+ 19x2-bit multiplier                                   : 1
+ 34x64-bit multiplier                                  : 1
+# Adders/Subtractors                                   : 54
+ 32-bit adder carry in                                 : 1
+ 32-bit addsub                                         : 52
+ 32-bit subtractor                                     : 1
+# Counters                                             : 1
+ 32-bit up counter                                     : 1
+# Accumulators                                         : 1
+ 32-bit up accumulator                                 : 1
+# Registers                                            : 40
+ Flip-Flops                                            : 40
+# Comparators                                          : 36
+ 32-bit comparator greatequal                          : 6
+ 32-bit comparator greater                             : 4
+ 32-bit comparator less                                : 25
+ 32-bit comparator lessequal                           : 1
+# Multiplexers                                         : 1
+ 32-bit 4-to-1 multiplexer                             : 1
+
+=========================================================================
+
+=========================================================================
+*                         Low Level Synthesis                           *
+=========================================================================
+WARNING:Xst:1710 - FF/Latch <alpha_0> (without init value) has a constant value of 0 in block <top_level>. This FF/Latch will be trimmed during the optimization process.
+
+Optimizing unit <top_level> ...
+
+Mapping all equations...
+Building and optimizing final netlist ...
+PACKER Warning: Lut phi_mux00233 is driving XOR and other loads hence can not be packed with the XOR/Carry. This would result in an extra LUT for a feedthrough.
+Found area constraint ratio of 100 (+ 5) on block top_level, actual ratio is 21.
+FlipFlop alpha_31 has been replicated 1 time(s)
+
+Final Macro Processing ...
+
+=========================================================================
+Final Register Report
+
+Macro Statistics
+# Registers                                            : 104
+ Flip-Flops                                            : 104
+
+=========================================================================
+
+=========================================================================
+*                           Partition Report                            *
+=========================================================================
+
+Partition Implementation Status
+-------------------------------
+
+  No Partitions were found in this design.
+
+-------------------------------
+
+=========================================================================
+*                            Final Report                               *
+=========================================================================
+Final Results
+RTL Top Level Output File Name     : top_level.ngr
+Top Level Output File Name         : top_level
+Output Format                      : NGC
+Optimization Goal                  : Speed
+Keep Hierarchy                     : No
+
+Design Statistics
+# IOs                              : 9
+
+Cell Usage :
+# BELS                             : 5464
+#      GND                         : 1
+#      INV                         : 91
+#      LUT1                        : 102
+#      LUT2                        : 625
+#      LUT2_D                      : 1
+#      LUT3                        : 1037
+#      LUT4                        : 103
+#      MULT_AND                    : 1
+#      MUXCY                       : 1836
+#      VCC                         : 1
+#      XORCY                       : 1666
+# FlipFlops/Latches                : 104
+#      FD                          : 1
+#      FDE                         : 33
+#      FDR                         : 38
+#      FDRE                        : 32
+# Clock Buffers                    : 1
+#      BUFGP                       : 1
+# IO Buffers                       : 8
+#      OBUF                        : 8
+# MULTs                            : 2
+#      MULT18X18SIO                : 2
+=========================================================================
+
+Device utilization summary:
+---------------------------
+
+Selected Device : 3s500efg320-4 
+
+ Number of Slices:                      993  out of   4656    21%  
+ Number of Slice Flip Flops:            104  out of   9312     1%  
+ Number of 4 input LUTs:               1959  out of   9312    21%  
+ Number of IOs:                           9
+ Number of bonded IOBs:                   9  out of    232     3%  
+ Number of MULT18X18SIOs:                 2  out of     20    10%  
+ Number of GCLKs:                         1  out of     24     4%  
+
+---------------------------
+Partition Resource Summary:
+---------------------------
+
+  No Partitions were found in this design.
+
+---------------------------
+
+
+=========================================================================
+TIMING REPORT
+
+NOTE: THESE TIMING NUMBERS ARE ONLY A SYNTHESIS ESTIMATE.
+      FOR ACCURATE TIMING INFORMATION PLEASE REFER TO THE TRACE REPORT
+      GENERATED AFTER PLACE-and-ROUTE.
+
+Clock Information:
+------------------
+-----------------------------------+------------------------+-------+
+Clock Signal                       | Clock buffer(FF name)  | Load  |
+-----------------------------------+------------------------+-------+
+CLK_50MHz                          | BUFGP                  | 104   |
+-----------------------------------+------------------------+-------+
+
+Asynchronous Control Signals Information:
+----------------------------------------
+No asynchronous control signals found in this design
+
+Timing Summary:
+---------------
+Speed Grade: -4
+
+   Minimum period: 118.550ns (Maximum Frequency: 8.435MHz)
+   Minimum input arrival time before clock: No path found
+   Maximum output required time after clock: 4.283ns
+   Maximum combinational path delay: No path found
+
+Timing Detail:
+--------------
+All values displayed in nanoseconds (ns)
+
+=========================================================================
+Timing constraint: Default period analysis for Clock 'CLK_50MHz'
+  Clock period: 118.550ns (frequency: 8.435MHz)
+  Total number of paths / destination ports: 1024214050158683599888478590215398109478912 / 233
+-------------------------------------------------------------------------
+Delay:               118.550ns (Levels of Logic = 687)
+  Source:            alpha_3 (FF)
+  Destination:       ret_31 (FF)
+  Source Clock:      CLK_50MHz rising
+  Destination Clock: CLK_50MHz rising
+
+  Data Path: alpha_3 to ret_31
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FDRE:C->Q             6   0.591   0.844  alpha_3 (alpha_3)
+     LUT3:I0->O            1   0.704   0.000  Mcompar_phi_cmp_gt0000_lut<1>1 (Mcompar_phi_cmp_gt0000_lut<1>1)
+     MUXCY:S->O            1   0.464   0.000  Mcompar_phi_cmp_gt0000_cy<1>_0 (Mcompar_phi_cmp_gt0000_cy<1>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<2>_0 (Mcompar_phi_cmp_gt0000_cy<2>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<3>_0 (Mcompar_phi_cmp_gt0000_cy<3>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<4>_0 (Mcompar_phi_cmp_gt0000_cy<4>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<5>_0 (Mcompar_phi_cmp_gt0000_cy<5>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<6>_0 (Mcompar_phi_cmp_gt0000_cy<6>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<7>_0 (Mcompar_phi_cmp_gt0000_cy<7>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<8>_0 (Mcompar_phi_cmp_gt0000_cy<8>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<9>_0 (Mcompar_phi_cmp_gt0000_cy<9>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<10>_0 (Mcompar_phi_cmp_gt0000_cy<10>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<11>_0 (Mcompar_phi_cmp_gt0000_cy<11>1)
+     MUXCY:CI->O           1   0.059   0.000  Mcompar_phi_cmp_gt0000_cy<12>_0 (Mcompar_phi_cmp_gt0000_cy<12>1)
+     MUXCY:CI->O          15   0.459   1.192  Mcompar_phi_cmp_gt0000_cy<13>_0 (Mcompar_phi_cmp_gt0000_cy<13>1)
+     LUT2:I0->O            7   0.704   0.787  phi_and00001 (Mmult_ret_mult0004_Vy_mux0018<31>_x_phi_and0000_mand)
+     LUT2:I1->O            1   0.704   0.000  Msub_phi_share0000_lut<1> (Msub_phi_share0000_lut<1>)
+     MUXCY:S->O            1   0.464   0.000  Msub_phi_share0000_cy<1> (Msub_phi_share0000_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<2> (Msub_phi_share0000_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<3> (Msub_phi_share0000_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<4> (Msub_phi_share0000_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<5> (Msub_phi_share0000_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<6> (Msub_phi_share0000_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<7> (Msub_phi_share0000_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<8> (Msub_phi_share0000_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<9> (Msub_phi_share0000_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<10> (Msub_phi_share0000_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<11> (Msub_phi_share0000_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<12> (Msub_phi_share0000_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<13> (Msub_phi_share0000_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<14> (Msub_phi_share0000_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<15> (Msub_phi_share0000_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<16> (Msub_phi_share0000_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<17> (Msub_phi_share0000_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<18> (Msub_phi_share0000_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<19> (Msub_phi_share0000_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<20> (Msub_phi_share0000_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<21> (Msub_phi_share0000_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<22> (Msub_phi_share0000_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<23> (Msub_phi_share0000_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<24> (Msub_phi_share0000_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<25> (Msub_phi_share0000_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<26> (Msub_phi_share0000_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<27> (Msub_phi_share0000_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<28> (Msub_phi_share0000_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Msub_phi_share0000_cy<29> (Msub_phi_share0000_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Msub_phi_share0000_cy<30> (Msub_phi_share0000_cy<30>)
+     XORCY:CI->O          66   0.804   1.308  Msub_phi_share0000_xor<31> (phi_share0000<31>)
+     LUT3:I2->O            1   0.704   0.420  Vy_mux0000<10>2 (Vy_mux0000<10>1)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<0> (Maddsub_phi_mux0002_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<1> (Maddsub_phi_mux0002_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<2> (Maddsub_phi_mux0002_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<3> (Maddsub_phi_mux0002_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<4> (Maddsub_phi_mux0002_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<5> (Maddsub_phi_mux0002_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<6> (Maddsub_phi_mux0002_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<7> (Maddsub_phi_mux0002_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<8> (Maddsub_phi_mux0002_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<9> (Maddsub_phi_mux0002_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<10> (Maddsub_phi_mux0002_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<11> (Maddsub_phi_mux0002_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<12> (Maddsub_phi_mux0002_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<13> (Maddsub_phi_mux0002_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<14> (Maddsub_phi_mux0002_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<15> (Maddsub_phi_mux0002_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<16> (Maddsub_phi_mux0002_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<17> (Maddsub_phi_mux0002_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<18> (Maddsub_phi_mux0002_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<19> (Maddsub_phi_mux0002_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<20> (Maddsub_phi_mux0002_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<21> (Maddsub_phi_mux0002_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<22> (Maddsub_phi_mux0002_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<23> (Maddsub_phi_mux0002_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<24> (Maddsub_phi_mux0002_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<25> (Maddsub_phi_mux0002_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<26> (Maddsub_phi_mux0002_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<27> (Maddsub_phi_mux0002_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<28> (Maddsub_phi_mux0002_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0002_cy<29> (Maddsub_phi_mux0002_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0002_cy<30> (Maddsub_phi_mux0002_cy<30>)
+     XORCY:CI->O          47   0.804   1.346  Maddsub_phi_mux0002_xor<31> (Madd_Vx_mux0000_lut<2>)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0003_lut<0> (Maddsub_phi_mux0003_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0003_cy<0> (Maddsub_phi_mux0003_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<1> (Maddsub_phi_mux0003_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<2> (Maddsub_phi_mux0003_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<3> (Maddsub_phi_mux0003_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<4> (Maddsub_phi_mux0003_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<5> (Maddsub_phi_mux0003_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<6> (Maddsub_phi_mux0003_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<7> (Maddsub_phi_mux0003_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<8> (Maddsub_phi_mux0003_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<9> (Maddsub_phi_mux0003_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<10> (Maddsub_phi_mux0003_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<11> (Maddsub_phi_mux0003_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<12> (Maddsub_phi_mux0003_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<13> (Maddsub_phi_mux0003_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<14> (Maddsub_phi_mux0003_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<15> (Maddsub_phi_mux0003_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<16> (Maddsub_phi_mux0003_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<17> (Maddsub_phi_mux0003_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<18> (Maddsub_phi_mux0003_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<19> (Maddsub_phi_mux0003_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<20> (Maddsub_phi_mux0003_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<21> (Maddsub_phi_mux0003_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<22> (Maddsub_phi_mux0003_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<23> (Maddsub_phi_mux0003_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<24> (Maddsub_phi_mux0003_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<25> (Maddsub_phi_mux0003_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<26> (Maddsub_phi_mux0003_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<27> (Maddsub_phi_mux0003_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<28> (Maddsub_phi_mux0003_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0003_cy<29> (Maddsub_phi_mux0003_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0003_cy<30> (Maddsub_phi_mux0003_cy<30>)
+     XORCY:CI->O          84   0.804   1.358  Maddsub_phi_mux0003_xor<31> (Maddsub_Vy_mux0002_lut<0>)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0004_lut<0> (Maddsub_phi_mux0004_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0004_cy<0> (Maddsub_phi_mux0004_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<1> (Maddsub_phi_mux0004_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<2> (Maddsub_phi_mux0004_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<3> (Maddsub_phi_mux0004_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<4> (Maddsub_phi_mux0004_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<5> (Maddsub_phi_mux0004_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<6> (Maddsub_phi_mux0004_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<7> (Maddsub_phi_mux0004_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<8> (Maddsub_phi_mux0004_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<9> (Maddsub_phi_mux0004_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<10> (Maddsub_phi_mux0004_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<11> (Maddsub_phi_mux0004_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<12> (Maddsub_phi_mux0004_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<13> (Maddsub_phi_mux0004_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<14> (Maddsub_phi_mux0004_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<15> (Maddsub_phi_mux0004_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<16> (Maddsub_phi_mux0004_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<17> (Maddsub_phi_mux0004_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<18> (Maddsub_phi_mux0004_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<19> (Maddsub_phi_mux0004_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<20> (Maddsub_phi_mux0004_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<21> (Maddsub_phi_mux0004_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<22> (Maddsub_phi_mux0004_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<23> (Maddsub_phi_mux0004_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<24> (Maddsub_phi_mux0004_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<25> (Maddsub_phi_mux0004_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<26> (Maddsub_phi_mux0004_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<27> (Maddsub_phi_mux0004_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<28> (Maddsub_phi_mux0004_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0004_cy<29> (Maddsub_phi_mux0004_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0004_cy<30> (Maddsub_phi_mux0004_cy<30>)
+     XORCY:CI->O          89   0.804   1.359  Maddsub_phi_mux0004_xor<31> (phi_cmp_lt00011)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0005_lut<0> (Maddsub_phi_mux0005_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0005_cy<0> (Maddsub_phi_mux0005_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<1> (Maddsub_phi_mux0005_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<2> (Maddsub_phi_mux0005_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<3> (Maddsub_phi_mux0005_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<4> (Maddsub_phi_mux0005_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<5> (Maddsub_phi_mux0005_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<6> (Maddsub_phi_mux0005_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<7> (Maddsub_phi_mux0005_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<8> (Maddsub_phi_mux0005_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<9> (Maddsub_phi_mux0005_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<10> (Maddsub_phi_mux0005_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<11> (Maddsub_phi_mux0005_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<12> (Maddsub_phi_mux0005_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<13> (Maddsub_phi_mux0005_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<14> (Maddsub_phi_mux0005_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<15> (Maddsub_phi_mux0005_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<16> (Maddsub_phi_mux0005_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<17> (Maddsub_phi_mux0005_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<18> (Maddsub_phi_mux0005_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<19> (Maddsub_phi_mux0005_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<20> (Maddsub_phi_mux0005_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<21> (Maddsub_phi_mux0005_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<22> (Maddsub_phi_mux0005_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<23> (Maddsub_phi_mux0005_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<24> (Maddsub_phi_mux0005_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<25> (Maddsub_phi_mux0005_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<26> (Maddsub_phi_mux0005_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<27> (Maddsub_phi_mux0005_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<28> (Maddsub_phi_mux0005_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0005_cy<29> (Maddsub_phi_mux0005_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0005_cy<30> (Maddsub_phi_mux0005_cy<30>)
+     XORCY:CI->O          91   0.804   1.360  Maddsub_phi_mux0005_xor<31> (phi_cmp_lt00031)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0006_lut<0> (Maddsub_phi_mux0006_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0006_cy<0> (Maddsub_phi_mux0006_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<1> (Maddsub_phi_mux0006_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<2> (Maddsub_phi_mux0006_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<3> (Maddsub_phi_mux0006_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<4> (Maddsub_phi_mux0006_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<5> (Maddsub_phi_mux0006_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<6> (Maddsub_phi_mux0006_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<7> (Maddsub_phi_mux0006_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<8> (Maddsub_phi_mux0006_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<9> (Maddsub_phi_mux0006_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<10> (Maddsub_phi_mux0006_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<11> (Maddsub_phi_mux0006_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<12> (Maddsub_phi_mux0006_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<13> (Maddsub_phi_mux0006_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<14> (Maddsub_phi_mux0006_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<15> (Maddsub_phi_mux0006_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<16> (Maddsub_phi_mux0006_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<17> (Maddsub_phi_mux0006_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<18> (Maddsub_phi_mux0006_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<19> (Maddsub_phi_mux0006_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<20> (Maddsub_phi_mux0006_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<21> (Maddsub_phi_mux0006_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<22> (Maddsub_phi_mux0006_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<23> (Maddsub_phi_mux0006_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<24> (Maddsub_phi_mux0006_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<25> (Maddsub_phi_mux0006_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<26> (Maddsub_phi_mux0006_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<27> (Maddsub_phi_mux0006_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<28> (Maddsub_phi_mux0006_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0006_cy<29> (Maddsub_phi_mux0006_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0006_cy<30> (Maddsub_phi_mux0006_cy<30>)
+     XORCY:CI->O          93   0.804   1.360  Maddsub_phi_mux0006_xor<31> (phi_cmp_lt00051)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0007_lut<0> (Maddsub_phi_mux0007_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0007_cy<0> (Maddsub_phi_mux0007_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<1> (Maddsub_phi_mux0007_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<2> (Maddsub_phi_mux0007_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<3> (Maddsub_phi_mux0007_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<4> (Maddsub_phi_mux0007_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<5> (Maddsub_phi_mux0007_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<6> (Maddsub_phi_mux0007_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<7> (Maddsub_phi_mux0007_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<8> (Maddsub_phi_mux0007_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<9> (Maddsub_phi_mux0007_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<10> (Maddsub_phi_mux0007_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<11> (Maddsub_phi_mux0007_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<12> (Maddsub_phi_mux0007_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<13> (Maddsub_phi_mux0007_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<14> (Maddsub_phi_mux0007_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<15> (Maddsub_phi_mux0007_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<16> (Maddsub_phi_mux0007_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<17> (Maddsub_phi_mux0007_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<18> (Maddsub_phi_mux0007_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<19> (Maddsub_phi_mux0007_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<20> (Maddsub_phi_mux0007_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<21> (Maddsub_phi_mux0007_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<22> (Maddsub_phi_mux0007_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<23> (Maddsub_phi_mux0007_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<24> (Maddsub_phi_mux0007_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<25> (Maddsub_phi_mux0007_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<26> (Maddsub_phi_mux0007_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<27> (Maddsub_phi_mux0007_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<28> (Maddsub_phi_mux0007_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0007_cy<29> (Maddsub_phi_mux0007_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0007_cy<30> (Maddsub_phi_mux0007_cy<30>)
+     XORCY:CI->O          95   0.804   1.361  Maddsub_phi_mux0007_xor<31> (phi_cmp_lt00071)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0008_lut<0> (Maddsub_phi_mux0008_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0008_cy<0> (Maddsub_phi_mux0008_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<1> (Maddsub_phi_mux0008_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<2> (Maddsub_phi_mux0008_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<3> (Maddsub_phi_mux0008_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<4> (Maddsub_phi_mux0008_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<5> (Maddsub_phi_mux0008_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<6> (Maddsub_phi_mux0008_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<7> (Maddsub_phi_mux0008_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<8> (Maddsub_phi_mux0008_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<9> (Maddsub_phi_mux0008_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<10> (Maddsub_phi_mux0008_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<11> (Maddsub_phi_mux0008_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<12> (Maddsub_phi_mux0008_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<13> (Maddsub_phi_mux0008_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<14> (Maddsub_phi_mux0008_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<15> (Maddsub_phi_mux0008_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<16> (Maddsub_phi_mux0008_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<17> (Maddsub_phi_mux0008_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<18> (Maddsub_phi_mux0008_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<19> (Maddsub_phi_mux0008_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<20> (Maddsub_phi_mux0008_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<21> (Maddsub_phi_mux0008_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<22> (Maddsub_phi_mux0008_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<23> (Maddsub_phi_mux0008_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<24> (Maddsub_phi_mux0008_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<25> (Maddsub_phi_mux0008_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<26> (Maddsub_phi_mux0008_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<27> (Maddsub_phi_mux0008_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<28> (Maddsub_phi_mux0008_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0008_cy<29> (Maddsub_phi_mux0008_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0008_cy<30> (Maddsub_phi_mux0008_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0008_xor<31> (phi_cmp_lt00091)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0009_lut<0> (Maddsub_phi_mux0009_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0009_cy<0> (Maddsub_phi_mux0009_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<1> (Maddsub_phi_mux0009_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<2> (Maddsub_phi_mux0009_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<3> (Maddsub_phi_mux0009_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<4> (Maddsub_phi_mux0009_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<5> (Maddsub_phi_mux0009_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<6> (Maddsub_phi_mux0009_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<7> (Maddsub_phi_mux0009_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<8> (Maddsub_phi_mux0009_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<9> (Maddsub_phi_mux0009_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<10> (Maddsub_phi_mux0009_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<11> (Maddsub_phi_mux0009_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<12> (Maddsub_phi_mux0009_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<13> (Maddsub_phi_mux0009_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<14> (Maddsub_phi_mux0009_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<15> (Maddsub_phi_mux0009_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<16> (Maddsub_phi_mux0009_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<17> (Maddsub_phi_mux0009_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<18> (Maddsub_phi_mux0009_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<19> (Maddsub_phi_mux0009_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<20> (Maddsub_phi_mux0009_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<21> (Maddsub_phi_mux0009_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<22> (Maddsub_phi_mux0009_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<23> (Maddsub_phi_mux0009_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<24> (Maddsub_phi_mux0009_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<25> (Maddsub_phi_mux0009_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<26> (Maddsub_phi_mux0009_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<27> (Maddsub_phi_mux0009_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<28> (Maddsub_phi_mux0009_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0009_cy<29> (Maddsub_phi_mux0009_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0009_cy<30> (Maddsub_phi_mux0009_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0009_xor<31> (phi_cmp_lt00021)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0010_lut<0> (Maddsub_phi_mux0010_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0010_cy<0> (Maddsub_phi_mux0010_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<1> (Maddsub_phi_mux0010_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<2> (Maddsub_phi_mux0010_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<3> (Maddsub_phi_mux0010_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<4> (Maddsub_phi_mux0010_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<5> (Maddsub_phi_mux0010_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<6> (Maddsub_phi_mux0010_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<7> (Maddsub_phi_mux0010_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<8> (Maddsub_phi_mux0010_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<9> (Maddsub_phi_mux0010_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<10> (Maddsub_phi_mux0010_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<11> (Maddsub_phi_mux0010_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<12> (Maddsub_phi_mux0010_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<13> (Maddsub_phi_mux0010_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<14> (Maddsub_phi_mux0010_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<15> (Maddsub_phi_mux0010_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<16> (Maddsub_phi_mux0010_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<17> (Maddsub_phi_mux0010_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<18> (Maddsub_phi_mux0010_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<19> (Maddsub_phi_mux0010_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<20> (Maddsub_phi_mux0010_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<21> (Maddsub_phi_mux0010_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<22> (Maddsub_phi_mux0010_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<23> (Maddsub_phi_mux0010_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<24> (Maddsub_phi_mux0010_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<25> (Maddsub_phi_mux0010_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<26> (Maddsub_phi_mux0010_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<27> (Maddsub_phi_mux0010_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<28> (Maddsub_phi_mux0010_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0010_cy<29> (Maddsub_phi_mux0010_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0010_cy<30> (Maddsub_phi_mux0010_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0010_xor<31> (phi_cmp_lt00041)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0011_lut<0> (Maddsub_phi_mux0011_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0011_cy<0> (Maddsub_phi_mux0011_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<1> (Maddsub_phi_mux0011_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<2> (Maddsub_phi_mux0011_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<3> (Maddsub_phi_mux0011_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<4> (Maddsub_phi_mux0011_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<5> (Maddsub_phi_mux0011_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<6> (Maddsub_phi_mux0011_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<7> (Maddsub_phi_mux0011_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<8> (Maddsub_phi_mux0011_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<9> (Maddsub_phi_mux0011_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<10> (Maddsub_phi_mux0011_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<11> (Maddsub_phi_mux0011_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<12> (Maddsub_phi_mux0011_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<13> (Maddsub_phi_mux0011_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<14> (Maddsub_phi_mux0011_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<15> (Maddsub_phi_mux0011_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<16> (Maddsub_phi_mux0011_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<17> (Maddsub_phi_mux0011_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<18> (Maddsub_phi_mux0011_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<19> (Maddsub_phi_mux0011_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<20> (Maddsub_phi_mux0011_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<21> (Maddsub_phi_mux0011_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<22> (Maddsub_phi_mux0011_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<23> (Maddsub_phi_mux0011_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<24> (Maddsub_phi_mux0011_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<25> (Maddsub_phi_mux0011_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<26> (Maddsub_phi_mux0011_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<27> (Maddsub_phi_mux0011_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<28> (Maddsub_phi_mux0011_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0011_cy<29> (Maddsub_phi_mux0011_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0011_cy<30> (Maddsub_phi_mux0011_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0011_xor<31> (phi_cmp_lt00061)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0012_lut<0> (Maddsub_phi_mux0012_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0012_cy<0> (Maddsub_phi_mux0012_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<1> (Maddsub_phi_mux0012_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<2> (Maddsub_phi_mux0012_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<3> (Maddsub_phi_mux0012_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<4> (Maddsub_phi_mux0012_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<5> (Maddsub_phi_mux0012_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<6> (Maddsub_phi_mux0012_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<7> (Maddsub_phi_mux0012_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<8> (Maddsub_phi_mux0012_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<9> (Maddsub_phi_mux0012_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<10> (Maddsub_phi_mux0012_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<11> (Maddsub_phi_mux0012_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<12> (Maddsub_phi_mux0012_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<13> (Maddsub_phi_mux0012_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<14> (Maddsub_phi_mux0012_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<15> (Maddsub_phi_mux0012_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<16> (Maddsub_phi_mux0012_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<17> (Maddsub_phi_mux0012_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<18> (Maddsub_phi_mux0012_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<19> (Maddsub_phi_mux0012_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<20> (Maddsub_phi_mux0012_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<21> (Maddsub_phi_mux0012_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<22> (Maddsub_phi_mux0012_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<23> (Maddsub_phi_mux0012_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<24> (Maddsub_phi_mux0012_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<25> (Maddsub_phi_mux0012_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<26> (Maddsub_phi_mux0012_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<27> (Maddsub_phi_mux0012_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<28> (Maddsub_phi_mux0012_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0012_cy<29> (Maddsub_phi_mux0012_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0012_cy<30> (Maddsub_phi_mux0012_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0012_xor<31> (phi_cmp_lt00081)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0013_lut<0> (Maddsub_phi_mux0013_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0013_cy<0> (Maddsub_phi_mux0013_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<1> (Maddsub_phi_mux0013_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<2> (Maddsub_phi_mux0013_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<3> (Maddsub_phi_mux0013_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<4> (Maddsub_phi_mux0013_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<5> (Maddsub_phi_mux0013_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<6> (Maddsub_phi_mux0013_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<7> (Maddsub_phi_mux0013_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<8> (Maddsub_phi_mux0013_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<9> (Maddsub_phi_mux0013_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<10> (Maddsub_phi_mux0013_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<11> (Maddsub_phi_mux0013_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<12> (Maddsub_phi_mux0013_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<13> (Maddsub_phi_mux0013_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<14> (Maddsub_phi_mux0013_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<15> (Maddsub_phi_mux0013_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<16> (Maddsub_phi_mux0013_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<17> (Maddsub_phi_mux0013_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<18> (Maddsub_phi_mux0013_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<19> (Maddsub_phi_mux0013_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<20> (Maddsub_phi_mux0013_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<21> (Maddsub_phi_mux0013_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<22> (Maddsub_phi_mux0013_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<23> (Maddsub_phi_mux0013_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<24> (Maddsub_phi_mux0013_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<25> (Maddsub_phi_mux0013_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<26> (Maddsub_phi_mux0013_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<27> (Maddsub_phi_mux0013_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<28> (Maddsub_phi_mux0013_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0013_cy<29> (Maddsub_phi_mux0013_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0013_cy<30> (Maddsub_phi_mux0013_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0013_xor<31> (phi_cmp_lt00101)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0014_lut<0> (Maddsub_phi_mux0014_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0014_cy<0> (Maddsub_phi_mux0014_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<1> (Maddsub_phi_mux0014_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<2> (Maddsub_phi_mux0014_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<3> (Maddsub_phi_mux0014_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<4> (Maddsub_phi_mux0014_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<5> (Maddsub_phi_mux0014_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<6> (Maddsub_phi_mux0014_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<7> (Maddsub_phi_mux0014_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<8> (Maddsub_phi_mux0014_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<9> (Maddsub_phi_mux0014_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<10> (Maddsub_phi_mux0014_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<11> (Maddsub_phi_mux0014_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<12> (Maddsub_phi_mux0014_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<13> (Maddsub_phi_mux0014_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<14> (Maddsub_phi_mux0014_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<15> (Maddsub_phi_mux0014_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<16> (Maddsub_phi_mux0014_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<17> (Maddsub_phi_mux0014_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<18> (Maddsub_phi_mux0014_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<19> (Maddsub_phi_mux0014_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<20> (Maddsub_phi_mux0014_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<21> (Maddsub_phi_mux0014_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<22> (Maddsub_phi_mux0014_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<23> (Maddsub_phi_mux0014_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<24> (Maddsub_phi_mux0014_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<25> (Maddsub_phi_mux0014_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<26> (Maddsub_phi_mux0014_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<27> (Maddsub_phi_mux0014_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<28> (Maddsub_phi_mux0014_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0014_cy<29> (Maddsub_phi_mux0014_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0014_cy<30> (Maddsub_phi_mux0014_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0014_xor<31> (phi_cmp_lt00111)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0015_lut<0> (Maddsub_phi_mux0015_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0015_cy<0> (Maddsub_phi_mux0015_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<1> (Maddsub_phi_mux0015_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<2> (Maddsub_phi_mux0015_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<3> (Maddsub_phi_mux0015_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<4> (Maddsub_phi_mux0015_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<5> (Maddsub_phi_mux0015_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<6> (Maddsub_phi_mux0015_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<7> (Maddsub_phi_mux0015_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<8> (Maddsub_phi_mux0015_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<9> (Maddsub_phi_mux0015_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<10> (Maddsub_phi_mux0015_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<11> (Maddsub_phi_mux0015_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<12> (Maddsub_phi_mux0015_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<13> (Maddsub_phi_mux0015_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<14> (Maddsub_phi_mux0015_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<15> (Maddsub_phi_mux0015_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<16> (Maddsub_phi_mux0015_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<17> (Maddsub_phi_mux0015_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<18> (Maddsub_phi_mux0015_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<19> (Maddsub_phi_mux0015_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<20> (Maddsub_phi_mux0015_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<21> (Maddsub_phi_mux0015_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<22> (Maddsub_phi_mux0015_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<23> (Maddsub_phi_mux0015_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<24> (Maddsub_phi_mux0015_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<25> (Maddsub_phi_mux0015_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<26> (Maddsub_phi_mux0015_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<27> (Maddsub_phi_mux0015_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<28> (Maddsub_phi_mux0015_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0015_cy<29> (Maddsub_phi_mux0015_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0015_cy<30> (Maddsub_phi_mux0015_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0015_xor<31> (phi_cmp_lt00121)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0016_lut<0> (Maddsub_phi_mux0016_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0016_cy<0> (Maddsub_phi_mux0016_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<1> (Maddsub_phi_mux0016_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<2> (Maddsub_phi_mux0016_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<3> (Maddsub_phi_mux0016_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<4> (Maddsub_phi_mux0016_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<5> (Maddsub_phi_mux0016_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<6> (Maddsub_phi_mux0016_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<7> (Maddsub_phi_mux0016_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<8> (Maddsub_phi_mux0016_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<9> (Maddsub_phi_mux0016_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<10> (Maddsub_phi_mux0016_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<11> (Maddsub_phi_mux0016_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<12> (Maddsub_phi_mux0016_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<13> (Maddsub_phi_mux0016_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<14> (Maddsub_phi_mux0016_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<15> (Maddsub_phi_mux0016_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<16> (Maddsub_phi_mux0016_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<17> (Maddsub_phi_mux0016_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<18> (Maddsub_phi_mux0016_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<19> (Maddsub_phi_mux0016_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<20> (Maddsub_phi_mux0016_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<21> (Maddsub_phi_mux0016_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<22> (Maddsub_phi_mux0016_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<23> (Maddsub_phi_mux0016_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<24> (Maddsub_phi_mux0016_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<25> (Maddsub_phi_mux0016_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<26> (Maddsub_phi_mux0016_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<27> (Maddsub_phi_mux0016_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<28> (Maddsub_phi_mux0016_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0016_cy<29> (Maddsub_phi_mux0016_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0016_cy<30> (Maddsub_phi_mux0016_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0016_xor<31> (phi_cmp_lt00131)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0017_lut<0> (Maddsub_phi_mux0017_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0017_cy<0> (Maddsub_phi_mux0017_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<1> (Maddsub_phi_mux0017_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<2> (Maddsub_phi_mux0017_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<3> (Maddsub_phi_mux0017_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<4> (Maddsub_phi_mux0017_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<5> (Maddsub_phi_mux0017_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<6> (Maddsub_phi_mux0017_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<7> (Maddsub_phi_mux0017_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<8> (Maddsub_phi_mux0017_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<9> (Maddsub_phi_mux0017_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<10> (Maddsub_phi_mux0017_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<11> (Maddsub_phi_mux0017_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<12> (Maddsub_phi_mux0017_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<13> (Maddsub_phi_mux0017_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<14> (Maddsub_phi_mux0017_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<15> (Maddsub_phi_mux0017_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<16> (Maddsub_phi_mux0017_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<17> (Maddsub_phi_mux0017_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<18> (Maddsub_phi_mux0017_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<19> (Maddsub_phi_mux0017_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<20> (Maddsub_phi_mux0017_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<21> (Maddsub_phi_mux0017_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<22> (Maddsub_phi_mux0017_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<23> (Maddsub_phi_mux0017_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<24> (Maddsub_phi_mux0017_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<25> (Maddsub_phi_mux0017_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<26> (Maddsub_phi_mux0017_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<27> (Maddsub_phi_mux0017_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<28> (Maddsub_phi_mux0017_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0017_cy<29> (Maddsub_phi_mux0017_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0017_cy<30> (Maddsub_phi_mux0017_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0017_xor<31> (phi_cmp_lt00141)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0018_lut<0> (Maddsub_phi_mux0018_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0018_cy<0> (Maddsub_phi_mux0018_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<1> (Maddsub_phi_mux0018_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<2> (Maddsub_phi_mux0018_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<3> (Maddsub_phi_mux0018_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<4> (Maddsub_phi_mux0018_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<5> (Maddsub_phi_mux0018_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<6> (Maddsub_phi_mux0018_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<7> (Maddsub_phi_mux0018_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<8> (Maddsub_phi_mux0018_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<9> (Maddsub_phi_mux0018_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<10> (Maddsub_phi_mux0018_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<11> (Maddsub_phi_mux0018_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<12> (Maddsub_phi_mux0018_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<13> (Maddsub_phi_mux0018_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<14> (Maddsub_phi_mux0018_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<15> (Maddsub_phi_mux0018_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<16> (Maddsub_phi_mux0018_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<17> (Maddsub_phi_mux0018_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<18> (Maddsub_phi_mux0018_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<19> (Maddsub_phi_mux0018_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<20> (Maddsub_phi_mux0018_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<21> (Maddsub_phi_mux0018_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<22> (Maddsub_phi_mux0018_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<23> (Maddsub_phi_mux0018_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<24> (Maddsub_phi_mux0018_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<25> (Maddsub_phi_mux0018_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<26> (Maddsub_phi_mux0018_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<27> (Maddsub_phi_mux0018_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<28> (Maddsub_phi_mux0018_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0018_cy<29> (Maddsub_phi_mux0018_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0018_cy<30> (Maddsub_phi_mux0018_cy<30>)
+     XORCY:CI->O          97   0.804   1.362  Maddsub_phi_mux0018_xor<31> (phi_cmp_lt00151)
+     LUT2:I1->O            1   0.704   0.000  Maddsub_phi_mux0019_lut<0> (Maddsub_phi_mux0019_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_phi_mux0019_cy<0> (Maddsub_phi_mux0019_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<1> (Maddsub_phi_mux0019_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<2> (Maddsub_phi_mux0019_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<3> (Maddsub_phi_mux0019_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<4> (Maddsub_phi_mux0019_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<5> (Maddsub_phi_mux0019_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<6> (Maddsub_phi_mux0019_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<7> (Maddsub_phi_mux0019_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<8> (Maddsub_phi_mux0019_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<9> (Maddsub_phi_mux0019_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<10> (Maddsub_phi_mux0019_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<11> (Maddsub_phi_mux0019_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<12> (Maddsub_phi_mux0019_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<13> (Maddsub_phi_mux0019_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<14> (Maddsub_phi_mux0019_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<15> (Maddsub_phi_mux0019_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<16> (Maddsub_phi_mux0019_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<17> (Maddsub_phi_mux0019_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<18> (Maddsub_phi_mux0019_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<19> (Maddsub_phi_mux0019_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<20> (Maddsub_phi_mux0019_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<21> (Maddsub_phi_mux0019_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<22> (Maddsub_phi_mux0019_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<23> (Maddsub_phi_mux0019_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<24> (Maddsub_phi_mux0019_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<25> (Maddsub_phi_mux0019_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<26> (Maddsub_phi_mux0019_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<27> (Maddsub_phi_mux0019_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<28> (Maddsub_phi_mux0019_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_phi_mux0019_cy<29> (Maddsub_phi_mux0019_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_phi_mux0019_cy<30> (Maddsub_phi_mux0019_cy<30>)
+     XORCY:CI->O          33   0.804   1.298  Maddsub_phi_mux0019_xor<31> (Vy_cmp_lt00011)
+     LUT3:I2->O            1   0.704   0.000  Maddsub_Vy_mux0018_lut<0> (Maddsub_Vy_mux0018_lut<0>)
+     MUXCY:S->O            1   0.464   0.000  Maddsub_Vy_mux0018_cy<0> (Maddsub_Vy_mux0018_cy<0>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<1> (Maddsub_Vy_mux0018_cy<1>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<2> (Maddsub_Vy_mux0018_cy<2>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<3> (Maddsub_Vy_mux0018_cy<3>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<4> (Maddsub_Vy_mux0018_cy<4>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<5> (Maddsub_Vy_mux0018_cy<5>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<6> (Maddsub_Vy_mux0018_cy<6>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<7> (Maddsub_Vy_mux0018_cy<7>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<8> (Maddsub_Vy_mux0018_cy<8>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<9> (Maddsub_Vy_mux0018_cy<9>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<10> (Maddsub_Vy_mux0018_cy<10>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<11> (Maddsub_Vy_mux0018_cy<11>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<12> (Maddsub_Vy_mux0018_cy<12>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<13> (Maddsub_Vy_mux0018_cy<13>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<14> (Maddsub_Vy_mux0018_cy<14>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<15> (Maddsub_Vy_mux0018_cy<15>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<16> (Maddsub_Vy_mux0018_cy<16>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<17> (Maddsub_Vy_mux0018_cy<17>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<18> (Maddsub_Vy_mux0018_cy<18>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<19> (Maddsub_Vy_mux0018_cy<19>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<20> (Maddsub_Vy_mux0018_cy<20>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<21> (Maddsub_Vy_mux0018_cy<21>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<22> (Maddsub_Vy_mux0018_cy<22>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<23> (Maddsub_Vy_mux0018_cy<23>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<24> (Maddsub_Vy_mux0018_cy<24>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<25> (Maddsub_Vy_mux0018_cy<25>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<26> (Maddsub_Vy_mux0018_cy<26>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<27> (Maddsub_Vy_mux0018_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<28> (Maddsub_Vy_mux0018_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Maddsub_Vy_mux0018_cy<29> (Maddsub_Vy_mux0018_cy<29>)
+     MUXCY:CI->O           0   0.059   0.000  Maddsub_Vy_mux0018_cy<30> (Maddsub_Vy_mux0018_cy<30>)
+     XORCY:CI->O           2   0.804   0.447  Maddsub_Vy_mux0018_xor<31> (Vy_mux0018<31>)
+     MULT_AND:I0->LO       0   0.741   0.000  Mmult_ret_mult0004_Vy_mux0018<31>_x_phi_and0000_mand (Mmult_ret_mult0004_Vy_mux0018<31>_x_phi_and0000_mand1)
+     MUXCY:DI->O           0   0.888   0.000  Mmult_ret_mult0004_Madd_cy<19> (Mmult_ret_mult0004_Madd_cy<19>)
+     XORCY:CI->O          15   0.804   1.017  Mmult_ret_mult0004_Madd_xor<20> (ret_mult0004<20>)
+     MULT18X18SIO:A3->P10    1   4.602   0.499  Mmult_ret_mult00031 (Mmult_ret_mult00031_P_to_Adder_B_10)
+     LUT2:I1->O            1   0.704   0.000  Mmult_ret_mult00030_Madd_lut<27> (Mmult_ret_mult00030_Madd_lut<27>)
+     MUXCY:S->O            1   0.464   0.000  Mmult_ret_mult00030_Madd_cy<27> (Mmult_ret_mult00030_Madd_cy<27>)
+     MUXCY:CI->O           1   0.059   0.000  Mmult_ret_mult00030_Madd_cy<28> (Mmult_ret_mult00030_Madd_cy<28>)
+     MUXCY:CI->O           1   0.059   0.000  Mmult_ret_mult00030_Madd_cy<29> (Mmult_ret_mult00030_Madd_cy<29>)
+     MUXCY:CI->O           1   0.059   0.000  Mmult_ret_mult00030_Madd_cy<30> (Mmult_ret_mult00030_Madd_cy<30>)
+     MUXCY:CI->O           1   0.059   0.000  Mmult_ret_mult00030_Madd_cy<31> (Mmult_ret_mult00030_Madd_cy<31>)
+     MUXCY:CI->O           1   0.059   0.000  Mmult_ret_mult00030_Madd_cy<32> (Mmult_ret_mult00030_Madd_cy<32>)
+     MUXCY:CI->O           0   0.059   0.000  Mmult_ret_mult00030_Madd_cy<33> (Mmult_ret_mult00030_Madd_cy<33>)
+     XORCY:CI->O           1   0.804   0.000  Mmult_ret_mult00030_Madd_xor<34> (tmp)
+     FDE:D                     0.308          ret_31
+    ----------------------------------------
+    Total                    118.550ns (87.615ns logic, 30.935ns route)
+                                       (73.9% logic, 26.1% route)
+
+=========================================================================
+Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK_50MHz'
+  Total number of paths / destination ports: 7 / 7
+-------------------------------------------------------------------------
+Offset:              4.283ns (Levels of Logic = 1)
+  Source:            LEDs_7 (FF)
+  Destination:       LEDs<7> (PAD)
+  Source Clock:      CLK_50MHz rising
+
+  Data Path: LEDs_7 to LEDs<7>
+                                Gate     Net
+    Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
+    ----------------------------------------  ------------
+     FD:C->Q               1   0.591   0.420  LEDs_7 (LEDs_7)
+     OBUF:I->O                 3.272          LEDs_7_OBUF (LEDs<7>)
+    ----------------------------------------
+    Total                      4.283ns (3.863ns logic, 0.420ns route)
+                                       (90.2% logic, 9.8% route)
+
+=========================================================================
+
+
+Total REAL time to Xst completion: 13.00 secs
+Total CPU time to Xst completion: 12.92 secs
+ 
+--> 
+
+
+Total memory usage is 573092 kilobytes
+
+Number of errors   :    0 (   0 filtered)
+Number of warnings :    1 (   0 filtered)
+Number of infos    :    2 (   0 filtered)
+
