@@ -1,0 +1,16 @@
+V3 7
+FL /home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd 2020/11/18.22:45:08 P.20131013
+EN work/basic_uart 1605864569 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/STD_LOGIC_UNSIGNED 1381692179 \
+      PB ieee/MATH_REAL 1381692182
+AR work/basic_uart/Behavioral 1605864570 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd \
+      EN work/basic_uart 1605864569
+FL /home/linus/Documents/Xilinx/master_thesis/uart2/top_level.vhd 2020/11/20.01:29:22 P.20131013
+EN work/top_level 1605864571 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart2/top_level.vhd \
+      PB ieee/std_logic_1164 1381692176
+AR work/top_level/Behavioral 1605864572 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart2/top_level.vhd \
+      EN work/top_level 1605864571 CP basic_uart

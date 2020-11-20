@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Interface Version="1" Minor="1">
+	<Ifc Id="ROOT" Top="1">
+		<Bus Id="led">
+			<Port Id="7" Dir="OUT"/>
+			<Port Id="6" Dir="OUT"/>
+			<Port Id="5" Dir="OUT"/>
+			<Port Id="4" Dir="OUT"/>
+			<Port Id="3" Dir="OUT"/>
+			<Port Id="2" Dir="OUT"/>
+			<Port Id="1" Dir="OUT"/>
+			<Port Id="0" Dir="OUT"/>
+		</Bus>
+		<Port Id="sys_clk" Dir="IN"/>
+		<Port Id="uart_rx" Dir="IN"/>
+		<Port Id="uart_tx" Dir="OUT"/>
+		<Port Id="pmod_1" Dir="OUT"/>
+		<Port Id="pmod_2" Dir="OUT"/>
+		<Port Id="reset_btn" Dir="IN"/>
+	</Ifc>
+</Interface>
+

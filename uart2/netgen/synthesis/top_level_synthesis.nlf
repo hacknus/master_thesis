@@ -1,0 +1,20 @@
+Release 14.7 - netgen P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Command Line: netgen -intstyle ise -ar Structure -tm top_level -w -dir
+netgen/synthesis -ofmt vhdl -sim top_level.ngc top_level_synthesis.vhd  
+
+Reading design 'top_level.ngc' ...
+Flattening design ...
+Processing design ... 
+  Preping design's networks ...
+  Preping design's macros ...
+Writing VHDL netlist
+'/home/linus/Documents/Xilinx/master_thesis/uart2/netgen/synthesis/top_level_syn
+thesis.vhd' ...
+INFO:NetListWriters:635 - The generated VHDL netlist contains Xilinx UNISIM
+   simulation primitives and has to be used with UNISIM library for correct
+   compilation and simulation. 
+Number of warnings: 0
+Number of info messages: 1
+Total memory usage is 302548 kilobytes

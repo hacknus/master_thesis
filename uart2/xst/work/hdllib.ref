@@ -1,0 +1,4 @@
+EN basic_uart NULL /home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd sub00/vhpl02 1605864569
+AR top_level behavioral /home/linus/Documents/Xilinx/master_thesis/uart2/top_level.vhd sub00/vhpl01 1605864572
+AR basic_uart behavioral /home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd sub00/vhpl03 1605864570
+EN top_level NULL /home/linus/Documents/Xilinx/master_thesis/uart2/top_level.vhd sub00/vhpl00 1605864571

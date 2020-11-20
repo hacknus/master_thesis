@@ -1,0 +1,14 @@
+V3 6
+FL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd 2020/11/18.14:09:22 P.20131013
+EN work/top_level 1605737370 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/top_level/Behavioral 1605737371 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd \
+      EN work/top_level 1605737370 CP clock_generator
+EN work/clock_generator 1605737372 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd \
+      PB ieee/std_logic_1164 1381692176 PB ieee/NUMERIC_STD 1381692181
+AR work/clock_generator/Behavioral 1605737373 \
+      FL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd \
+      EN work/clock_generator 1605737372

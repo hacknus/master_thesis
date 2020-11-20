@@ -1,0 +1,5 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "txd" LOC = M14;
+NET "clock" LOC = C9;

@@ -1,0 +1,64 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7 (64-bit)
+# Build 321239 by xbuild on Fri Sep 27 19:24:36 MDT 2013
+# Start of session at: Fri Nov 20 01:17:19 2020
+# Process ID: 2613
+# Log file: /home/linus/Documents/Xilinx/master_thesis/uart2/planAhead_run_1/planAhead.log
+# Journal file: /home/linus/Documents/Xilinx/master_thesis/uart2/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+start_gui
+source /home/linus/Documents/Xilinx/master_thesis/uart2/pa.fromHdl.tcl
+update_compile_order -fileset sim_1
+startgroup
+set_property package_pin F12 [get_ports {led[7]}]
+endgroup
+startgroup
+set_property package_pin E12 [get_ports {led[6]}]
+endgroup
+startgroup
+set_property package_pin E11 [get_ports {led[5]}]
+endgroup
+startgroup
+set_property package_pin F11 [get_ports {led[4]}]
+endgroup
+startgroup
+set_property package_pin C11 [get_ports {led[3]}]
+endgroup
+startgroup
+set_property package_pin D11 [get_ports {led[2]}]
+endgroup
+startgroup
+set_property package_pin E9 [get_ports {led[1]}]
+endgroup
+startgroup
+set_property package_pin F9 [get_ports {led[0]}]
+endgroup
+startgroup
+set_property package_pin E9 [get_ports {led[1]}]
+endgroup
+set_property iostandard LVTTL [get_ports [list {led[7]} {led[6]} {led[5]} {led[4]} {led[3]} {led[2]} {led[1]} {led[0]}]]
+startgroup
+set_property package_pin E8 [get_ports pmod_1]
+endgroup
+startgroup
+set_property package_pin F8 [get_ports pmod_2]
+endgroup
+startgroup
+set_property package_pin L13 [get_ports reset_btn]
+endgroup
+startgroup
+set_property package_pin C9 [get_ports sys_clk]
+endgroup
+startgroup
+set_property package_pin R7 [get_ports uart_rx]
+endgroup
+startgroup
+set_property package_pin M14 [get_ports uart_tx]
+endgroup
+set_property iostandard LVTTL [get_ports [list pmod_1]]
+set_property iostandard LVTTL [get_ports [list reset_btn]]
+set_property iostandard LVTTL [get_ports [list uart_rx]]
+set_property iostandard LVTTL [get_ports [list uart_tx]]
+set_property iostandard LVTTL [get_ports [list sys_clk]]
+set_property iostandard LVTTL [get_ports [list pmod_2]]
+save_constraints

@@ -1,0 +1,4 @@
+EN clock_generator NULL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd sub00/vhpl02 1605737372
+AR top_level behavioral /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd sub00/vhpl01 1605737371
+AR clock_generator behavioral /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd sub00/vhpl03 1605737373
+EN top_level NULL /home/linus/Documents/Xilinx/master_thesis/uart/top_level.vhd sub00/vhpl00 1605737370

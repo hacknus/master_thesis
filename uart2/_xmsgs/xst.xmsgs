@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="Xst" num="1610" delta="old" >&quot;<arg fmt="%s" index="1">/home/linus/Documents/Xilinx/master_thesis/uart2/basic_uart.vhd</arg>&quot; line <arg fmt="%d" index="2">150</arg>: Width mismatch. &lt;<arg fmt="%s" index="3">tx_state_next.nbits</arg>&gt; has a width of <arg fmt="%d" index="4">4</arg> bits but assigned expression is <arg fmt="%d" index="5">5</arg>-bit wide.
+</msg>
+
+</messages>
+

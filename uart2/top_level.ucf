@@ -1,0 +1,40 @@
+
+# PlanAhead Generated physical constraints 
+
+NET "led[7]" LOC = F12;
+NET "led[6]" LOC = E12;
+NET "led[5]" LOC = E11;
+NET "led[4]" LOC = F11;
+NET "led[3]" LOC = C11;
+NET "led[2]" LOC = D11;
+NET "led[0]" LOC = F9;
+NET "led[1]" LOC = E9;
+
+# PlanAhead Generated IO constraints 
+
+NET "led[7]" IOSTANDARD = LVTTL;
+NET "led[6]" IOSTANDARD = LVTTL;
+NET "led[5]" IOSTANDARD = LVTTL;
+NET "led[4]" IOSTANDARD = LVTTL;
+NET "led[3]" IOSTANDARD = LVTTL;
+NET "led[2]" IOSTANDARD = LVTTL;
+NET "led[1]" IOSTANDARD = LVTTL;
+NET "led[0]" IOSTANDARD = LVTTL;
+
+# PlanAhead Generated physical constraints 
+
+NET "pmod_1" LOC = E8;
+NET "pmod_2" LOC = F8;
+NET "reset_btn" LOC = L13;
+NET "sys_clk" LOC = C9;
+NET "uart_rx" LOC = R7;
+NET "uart_tx" LOC = M14;
+
+# PlanAhead Generated IO constraints 
+
+NET "pmod_1" IOSTANDARD = LVTTL;
+NET "reset_btn" IOSTANDARD = LVTTL;
+NET "uart_rx" IOSTANDARD = LVTTL;
+NET "uart_tx" IOSTANDARD = LVTTL;
+NET "sys_clk" IOSTANDARD = LVTTL;
+NET "pmod_2" IOSTANDARD = LVTTL;
