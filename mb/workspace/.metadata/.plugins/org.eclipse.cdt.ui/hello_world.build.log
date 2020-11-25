@@ -1,0 +1,18 @@
+01:26:50 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:62:28: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c:62:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: In function 'writeByteSerial':
+../src/helloworld.c:66:21: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:89:16: error: 'SIO' undeclared (first use in this function)
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:63:1: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+
+01:26:50 Build Finished (took 569ms)
+

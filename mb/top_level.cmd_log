@@ -1,0 +1,123 @@
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+netgen -intstyle ise -ar Structure -tm top_level -w -dir netgen/synthesis -ofmt vhdl -sim top_level.ngc top_level_synthesis.vhd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -i -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+netgen -intstyle ise -ar Structure -tm top_level -w -dir netgen/synthesis -ofmt vhdl -sim top_level.ngc top_level_synthesis.vhd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+xst -intstyle ise -ifn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.xst" -ofn "/home/linus/Documents/Xilinx/master_thesis/mb/top_level.syr" 
+netgen -intstyle ise -ar Structure -tm top_level -w -dir netgen/synthesis -ofmt vhdl -sim top_level.ngc top_level_synthesis.vhd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc top_level.ucf -p xc3s500e-fg320-4 top_level.ngc top_level.ngd -bm "ipcore_dir/microblaze_mcs.bmm" 
+map -intstyle ise -p xc3s500e-fg320-4 -cm area -ir off -pr off -c 100 -o top_level_map.ncd top_level.ngd top_level.pcf 
+par -w -intstyle ise -ol high -t 1 top_level_map.ncd top_level.ncd top_level.pcf 
+trce -intstyle ise -v 3 -s 4 -n 3 -fastpaths -xml top_level.twx top_level.ncd -o top_level.twr top_level.pcf -ucf top_level.ucf 
+bitgen -intstyle ise -f top_level.ut top_level.ncd 

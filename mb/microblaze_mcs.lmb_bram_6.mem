@@ -1,0 +1,30 @@
+// Mem file initialization records.
+//
+// Release 14.6 - Data2MEM P.20131013, build 3.0.10 Apr 3, 2013
+// Copyright (c) 1995-2020 Xilinx, Inc.  All rights reserved.
+//
+// Command: data2mem -p "xc3s500efg320-4" -bm /home/linus/Documents/Xilinx/master_thesis/mb/ipcore_dir/microblaze_mcs.bmm -bd workspace/hello_world/Debug/hello_world.elf tag microblaze_mcs -bx . -u
+//
+// Created on Tuesday November 24, 2020 - 08:11:45 am, from:
+//
+//     Map file     - /home/linus/Documents/Xilinx/master_thesis/mb/ipcore_dir/microblaze_mcs.bmm
+//     Data file(s) - workspace/hello_world/Debug/hello_world.elf
+//
+// Address space 'microblaze_mcs.lmb_bram', bit lane [7:4].
+//
+// Bus width = 32 bits, number of bus blocks = 1.
+
+@00000000
+    0 5 0 A 0 9 0 0 0 C
+
+@00000014
+    0 0 0 0 0 1 0 3 0 0 8 0 0 0 0 E 0 A 1 0 E 0 E 0 0 0 0 0 0 F 0 4 0 0 0 0 E 0 0 0 0 0 0 0 0 D 0 0 0 1 0 0 0 0 0 0 0 0 1 0 2 0 0 E
+    2 0 0 0 0 1 0 0 0 0 2 0 0 0 1 0 0 0 0 0 0 1 E 0 0 0 0 0 0 1 0 0 0 F 0 0 0 2 0 1 0 0 0 F 0 B 0 0 7 0 0 0 0 9 0 0 0 8 0 0 7 0 0 0
+    0 1 D 1 0 2 0 0 6 2 0 0 B 0 0 6 E 0 0 1 2 0 2 0 0 0 0 0 0 0 F 0 8 0 0 0 F 0 2 0 0 0 E 0 1 0 0 2 0 0 0 2 0 0 0 F 5 0 B 3 0 0 2 4
+    4 0 0 0 0 3 3 0 1 2 2 2 3 4 0 4 D 0 0 F C 8 2 1 B F A 2 0 0 0 0 E 0 0 0 F 0 0 C 0 0 B 0 1 0 1 0 F F 0 0 8 0 0 9 0 0 0 0 0 0 4 0
+    0 3 F 6 2 B 0 1 2 2 2 2 3 3 3 3 4 4 0 4 0 0 9 0 0 4 0 0 0 0 0 7 0 F 0 0 0 F 0 0 9 0 0 6 0 1 0 1 0 F F 0 0 D 0 0 D 0 0 0 0 0 0 0
+    3 0 0 3 F 0 0 0 0 0 F 0 0 7 0 0 6 0 0 0 2 0 0 0 0 D 0 0 C F 9 0 0 0 0 F 0 0 B 0 B 0 0 0 4 0 0 0 0 3 0 0 4 0 3 1 0 F C 0 F B 0 0
+    4 0 1 1 0 0 E 0 0 E E 0 F 2 1 0 E 0 0 F F F F 0 1 0 2 E 0 1 0 0 8 0 0 F F 7 0 E E 0 1 0 F D 0 F B 0 0 0 1 2 0 0 F 0 0 0 0 0 0 0
+    E 0 1 0 F 8 0 F C 0 0 0 1 2 0 0 A 0 2 2 2 2 3 3 3 3 4 0 F 4 4 4 0 0 0 5 1 0 0 0 1 2 0 2 2 2 3 3 3 3 4 4 4 4 5 0 5 F 0 0 E 0 0 1
+    0 0 0 1 0 0 0 F 0 0 0 0 0 F 0 F 0 0 0 F A 0 F C 0 0 0 0 F 0 F B 0 0 0 0 F 0 F 0 4 6 7 0 0 4 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+    0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7 0

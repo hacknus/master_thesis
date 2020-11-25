@@ -1,0 +1,25 @@
+06:14:44.346 INFO  - Project 'hw_platform_0' created. You can now create BSPs and application projects targeting this hardware platform. 
+07:06:11.138 ERROR - Unexpected Exception while launch bash shell: {} java.io.IOException: Cannot run program "xterm" (in directory "/home/linus/Documents/Xilinx/master_thesis/mb/workspace"): java.io.IOException: error=2, No such file or directory
+	at java.lang.ProcessBuilder.start(Unknown Source)
+	at com.xilinx.sdk.xbash.OpenXBashHandler$1.run(Unknown Source)
+
+07:45:27.336 INFO  - Saving repository preferences. 
+07:45:27.346 INFO  - Reading in cores from global repositories: 
+		 /home/linus/Documents/Xilinx/dtc 
+07:45:27.350 INFO  - Updating libgen.options on all BSP projects. 
+07:45:27.355 INFO  - Cleaning BSP projects in the workspace. 
+08:55:50.218 INFO  - Restoring global repository preferences: 
+		 /home/linus/Documents/Xilinx/dtc 
+09:01:47.160 INFO  - Restoring global repository preferences: 
+		 /home/linus/Documents/Xilinx/dtc 
+12:09:56.021 INFO  - Project hw_platform_0's source hardware specification located at /home/linus/Documents/Xilinx/master_thesis/mb/ipcore_dir/microblaze_mcs_sdk.xml is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated. 
+12:10:03.830 INFO  - Copied contents of /home/linus/Documents/Xilinx/master_thesis/mb/ipcore_dir/microblaze_mcs_sdk.xml into /hw_platform_0/system.xml. 
+12:10:03.832 INFO  - Copied contents of /home/linus/Documents/Xilinx/master_thesis/mb/ipcore_dir/microblaze_mcs.bmm into /hw_platform_0/system_bd.bmm. 
+12:10:03.992 INFO  - Synchronizing projects in the workspace with the hardware platform specification changes. 
+12:10:05.561 INFO  - Restoring global repository preferences: 
+		 /home/linus/Documents/Xilinx/dtc 
+12:10:12.778 INFO  - Updating hardware inferred compiler options for hello_world. 
+12:10:12.803 INFO  - Clearing existing target manager status. 
+12:10:16.086 INFO  - Workspace synchronized with the new hardware specification file. Cleaning dependent projects... 
+12:18:55.163 ERROR - Unexpected error while parsing XMD response ￿: com.google.gson.JsonSyntaxException: com.google.gson.stream.MalformedJsonException: invalid number or unquoted string near  

@@ -1,0 +1,2 @@
+vhdl work "ipcore_dir/microblaze_mcs.vhd"
+vhdl work "top_level.vhd"

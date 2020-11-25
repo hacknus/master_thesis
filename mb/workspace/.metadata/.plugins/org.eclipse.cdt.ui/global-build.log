@@ -1,0 +1,205 @@
+13:35:10 **** Incremental Build of configuration Debug for project hello_world ****
+make all 
+make: Nothing to be done for 'all'.
+13:35:17 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+Finished building: ../src/helloworld.c
+ 
+Building target: hello_world.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp/microblaze_mcs/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "hello_world.elf"  ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: hello_world.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size hello_world.elf  |tee "hello_world.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   7382	    348	   2268	   9998	   270e	hello_world.elf
+Finished building: hello_world.elf.size
+ 
+Invoking: Xilinx ELF Check
+elfcheck hello_world.elf -hw ../../hw_platform_0/system.xml -pe microblaze_mcs  |tee "hello_world.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../hw_platform_0/system.xml -pe microblaze_mcs
+hello_world.elf 
+
+ELF file	: hello_world.elf
+ERROR:EDK:3165 - elfcheck failed!
+The following sections did not fit into Processor  memory:
+	Section .stack (0x2340 - 0x273F)
+	Section .heap (0x1F40 - 0x233F)
+
+Try using the linker script generation tools to generate an ELF that maps
+correctly to your hardware design.
+Finished building: hello_world.elf.elfcheck
+ 
+01:15:04 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/SerialIO.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/SerialIO.d" -MT"src/SerialIO.d" -o "src/SerialIO.o" "../src/SerialIO.c"
+Finished building: ../src/SerialIO.c
+ 
+Building target: hello_world.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp/microblaze_mcs/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "hello_world.elf"  ./src/SerialIO.o ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: hello_world.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size hello_world.elf  |tee "hello_world.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+   7382	    348	   2268	   9998	   270e	hello_world.elf
+Finished building: hello_world.elf.size
+ 
+Invoking: Xilinx ELF Check
+elfcheck hello_world.elf -hw ../../hw_platform_0/system.xml -pe microblaze_mcs  |tee "hello_world.elf.elfcheck"
+elfcheck
+Xilinx EDK 14.7 Build EDK_P.20131013
+Copyright (c) 1995-2012 Xilinx, Inc.  All rights reserved.
+
+Command Line: elfcheck -hw ../../hw_platform_0/system.xml -pe microblaze_mcs
+hello_world.elf 
+
+ELF file	: hello_world.elf
+ERROR:EDK:3165 - elfcheck failed!
+The following sections did not fit into Processor  memory:
+	Section .stack (0x2340 - 0x273F)
+	Section .heap (0x1F40 - 0x233F)
+
+Try using the linker script generation tools to generate an ELF that maps
+correctly to your hardware design.
+Finished building: hello_world.elf.elfcheck
+ 
+01:15:06 **** Build of project standalone_bsp_0 ****
+make -k all 
+Finished building libraries
+01:16:41 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+make: Nothing to be done for 'all'.
+01:19:46 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:54:19: warning: character constant too long for its type [enabled by default]
+../src/helloworld.c:54:5: error: invalid initializer
+../src/helloworld.c:56:15: error: expected expression before '%' token
+../src/helloworld.c:56:15: error: too few arguments to function 'printStr'
+../src/SerialIO.h:29:6: note: declared here
+../src/helloworld.c:54:10: warning: unused variable 'c' [-Wunused-variable]
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:20:07 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c:47:15: warning: character constant too long for its type [enabled by default]
+../src/helloworld.c:47:1: error: invalid initializer
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:57:15: error: expected expression before '%' token
+../src/helloworld.c:57:15: error: too few arguments to function 'printStr'
+../src/SerialIO.h:29:6: note: declared here
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:20:16 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:57:15: error: expected expression before '%' token
+../src/helloworld.c:57:15: error: too few arguments to function 'printStr'
+../src/SerialIO.h:29:6: note: declared here
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:20:26 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:57:6: warning: passing argument 1 of 'printStr' from incompatible pointer type [enabled by default]
+../src/SerialIO.h:29:6: note: expected 'struct SerialIO *' but argument is of type 'struct XIOModule *'
+Finished building: ../src/helloworld.c
+ 
+Building target: hello_world.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../hello_world_bsp/microblaze_mcs/lib -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "hello_world.elf"  ./src/SerialIO.o ./src/helloworld.o ./src/platform.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+./src/helloworld.o: In function `main':
+/home/linus/Documents/Xilinx/master_thesis/mb/workspace/hello_world/Debug/../src/helloworld.c:57: undefined reference to `printStr'
+collect2: ld returned 1 exit status
+make: *** [makefile:41: hello_world.elf] Error 1
+01:21:05 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:57:16: error: 'SIO' undeclared (first use in this function)
+../src/helloworld.c:57:16: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:22:05 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:54:28: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c:54:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: In function 'writeByteSerial':
+../src/helloworld.c:58:21: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:81:16: error: 'SIO' undeclared (first use in this function)
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:55:1: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:23:07 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c:44:19: fatal error: xgpio.h: No such file or directory
+compilation terminated.
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:23:12 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:60:28: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c:60:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: In function 'writeByteSerial':
+../src/helloworld.c:64:21: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:87:16: error: 'SIO' undeclared (first use in this function)
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:61:1: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:26:31 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c:41:25: fatal error: xuartlite_l.h: No such file or directory
+compilation terminated.
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
+01:26:50 **** Auto Build of configuration Debug for project hello_world ****
+make all 
+Building file: ../src/helloworld.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -I../../hello_world_bsp/microblaze_mcs/include -mno-xl-reorder -mlittle-endian -mcpu=v8.40.a -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/helloworld.d" -MT"src/helloworld.d" -o "src/helloworld.o" "../src/helloworld.c"
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:62:28: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c:62:28: note: each undeclared identifier is reported only once for each function it appears in
+../src/helloworld.c: In function 'writeByteSerial':
+../src/helloworld.c:66:21: error: 'XPAR_RS232_DCE_BASEADDR' undeclared (first use in this function)
+../src/helloworld.c: In function 'main':
+../src/helloworld.c:89:16: error: 'SIO' undeclared (first use in this function)
+../src/helloworld.c: In function 'readByteSerial':
+../src/helloworld.c:63:1: warning: control reaches end of non-void function [-Wreturn-type]
+make: *** [src/subdir.mk:29: src/helloworld.o] Error 1
