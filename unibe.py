@@ -1,0 +1,6 @@
+BLUE = "#4767af"
+GREEN = "#466553"
+ORANGE = "#ee7402"
+RED = "#e6002e"
+BLACK = "#000000"
+GRAY = "#7a7c81"
