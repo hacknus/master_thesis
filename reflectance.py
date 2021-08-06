@@ -4,6 +4,8 @@ from scipy.integrate import nquad
 from hapke_model import hapke_ref
 import pandas as pd
 
+from scipy.interpolate import interp1d
+
 
 # This is Table 4, "Hapke 2002" line from Fornasier et al. 2015:
 # Results from the Hapke (2002, and 2012) modeling from disk-resolved
@@ -51,10 +53,18 @@ def hapke_int(i, e, phase, w, slope, hs, bs, hc, bc, spsf_par, spsf_type):
 
 
 def R_up(w):
+    df_67p = pd.read_csv("data/filacchione_67p_virtis_augsep2014.dat", delimiter="\s", skiprows=0)
+    print(df_67p.head())
+    comet = interp1d(df_67p["wavelength"], df_67p["I/F_body"], fill_value="extrapolate")
+    return comet(w) / comet(649) * 0.25 * 2
     return (0.08 - 0.05) / (743 - 480) * w / ((0.08 - 0.05) / (743 - 480) * 649)
 
 
 def R_low(w):
+    df_67p = pd.read_csv("data/filacchione_67p_virtis_augsep2014.dat", delimiter="\s", skiprows=0)
+    print(df_67p.head())
+    comet = interp1d(df_67p["wavelength"], df_67p["I/F_body"], fill_value="extrapolate")
+    return comet(w) / comet(649) * 0.25 / 2
     return R_up(w) / 10
 
 
@@ -75,16 +85,19 @@ if __name__ == "__main__":
 
     df = pd.DataFrame(data=d)
     df.to_csv("ref.csv", index=False)
-    #plt.plot(phase_angle, r * R(480), color="blue", label=r"$\lambda=$480nm (integrated)")
-    #plt.plot(phase_angle, r * R(649), color="lightgreen", label=r"$\lambda=$649nm (integrated)")
-    #plt.plot(phase_angle, r * R(743), color="red", label=r"$\lambda=$743nm (integrated)")
-    plt.plot(phase_angle, get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_low(480),
+    # plt.plot(phase_angle, r * R(480), color="blue", label=r"$\lambda=$480nm (integrated)")
+    # plt.plot(phase_angle, r * R(649), color="lightgreen", label=r"$\lambda=$649nm (integrated)")
+    # plt.plot(phase_angle, r * R(743), color="red", label=r"$\lambda=$743nm (integrated)")
+    plt.plot(phase_angle,
+             get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_up(480),
              ls="--",
              color="#4767af", label=r"$\lambda=$480nm $i=\alpha$ $e=0$")  # blue
-    plt.plot(phase_angle, get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_low(649),
+    plt.plot(phase_angle,
+             get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_up(649),
              ls="--",
              color="#466553", label=r"$\lambda=$649nm $i=\alpha$ $e=0$")  # green
-    plt.plot(phase_angle, get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_low(743),
+    plt.plot(phase_angle,
+             get_ref(phase_angle=phase_angle, i=phase_angle, e=np.zeros(phase_angle.shape))[0] * R_up(743),
              ls="--",
              color="#e6002e", label=r"$\lambda=$743nm $i=\alpha$ $e=0$")  # red
     # plt.fill_between(phase_angle, r - r_err, r + r_err, color="red", alpha=0.5)

@@ -8,7 +8,7 @@ import pandas as pd
 from make_filters import make_filter, init_filters, init_filters_thomas
 from scipy.optimize import dual_annealing, fsolve
 from reflectance import get_ref
-
+from comet import ref_rock, ref_ice
 
 # solar spectra: https://www.pveducation.org/pvcdrom/appendices/standard-solar-spectra
 
@@ -53,10 +53,10 @@ def plot_signals():
     ref_low, ref_up = get_reflectance()
 
     def integrand_low(w, N=4, alpha=0):
-        return w * M(w) ** N * Q(w) * ref_low(alpha, w)[0] * S(w)
+        return w * M(w) ** N * Q(w) * ref_rock(w, alpha)[0] * S(w)
 
     def integrand_up(w, N=4, alpha=0):
-        return w * M(w) ** N * Q(w) * ref_up(alpha, w)[0] * S(w)
+        return w * M(w) ** N * Q(w) * ref_ice(w, alpha)[0] * S(w)
 
     phase_angle = np.arange(0, 100, 5)
     signals_low = np.zeros(phase_angle.shape)
@@ -77,7 +77,7 @@ def plot_signals():
                 A = (7e-6) ** 2
                 Omega = 0.64e-10
                 r_h = 1  # A.U.
-                t_exp = 0.001  # seconds
+                t_exp = 0.00005  # seconds
                 i = quad(integrand_up, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
                     0]
                 signal = G * A * Omega * t_exp * i / (const.h * const.c) / r_h ** 2
@@ -111,7 +111,7 @@ def plot_signals():
         w3 = 100
         w4 = 150
         c1 = 460
-        c2 = 550
+        c2 = 650
         c3 = 750
         c4 = 900
         plt.scatter(c1, w1, label="BLUE", color="#4767af")
@@ -130,12 +130,13 @@ def plot_signals():
         plt.show()
         exit()
 
+
         G = 2.5  # electron per DN
         A = 0.135 ** 2 * 4 * np.pi
         A = (7e-6) ** 2
         Omega = 0.64e-10
         r_h = 1  # A.U.
-        t_exp = 0.0001  # seconds
+        t_exp = 0.00005  # seconds
         signal_low = G * A * Omega * t_exp * integral_low / (const.h * const.c) / r_h ** 2
         signal_up = G * A * Omega * t_exp * integral_up / (const.h * const.c) / r_h ** 2
         # TODO: calculate with uncertainties of other parameters
@@ -145,6 +146,7 @@ def plot_signals():
     fig, axes = plt.subplots(nrows=6, sharex=True)
 
     wavelengths = np.linspace(300, 1100, 1000)
+    phase_angle = 58
 
     axes[0].plot(wavelengths, 100 * Q(wavelengths), color="black")
     axes[0].set_ylabel(r"$Q$ [%]")
@@ -159,9 +161,9 @@ def plot_signals():
     axes[2].set_ylabel(r"$T$ [%]")
 
     axes[3].plot(wavelengths,
-                 100 * (ref_low(0, wavelengths) + (ref_up(0, wavelengths) - ref_low(0, wavelengths)) / 2),
+                 100 * (ref_rock(wavelengths,phase_angle) + (ref_ice(wavelengths,phase_angle) - ref_rock(wavelengths,phase_angle)) / 2),
                  color="#e6002e")
-    axes[3].fill_between(wavelengths, 100 * ref_low(0, wavelengths).T[0], 100 * ref_up(0, wavelengths).T[0],
+    axes[3].fill_between(wavelengths, 100 * ref_rock(wavelengths,phase_angle), 100 * ref_ice(wavelengths,phase_angle),
                          color="#e6002e",
                          alpha=0.5)
     axes[3].set_ylabel(r"$R$ [%]")
@@ -170,7 +172,7 @@ def plot_signals():
     axes[4].plot(wavelengths, S(wavelengths), color="black", label=r"$F_\odot$")
     axes[4].set_ylabel(r"$F_\odot$ [Wm$^{-2}$nm$^{-1}$]")
 
-    axes[5].plot(wavelengths, M(wavelengths) ** 4 * ref_low(0, wavelengths)[0] * S(wavelengths),
+    axes[5].plot(wavelengths, M(wavelengths) ** 4 * ref_rock(wavelengths,phase_angle) * S(wavelengths),
                  color="#e6002e",
                  label=r"$F_\odot(\omega)M(\omega)^NR(\omega)$")
     axes[5].set_ylabel(r"$F_\odot'$ [Wm$^{-2}$nm$^{-1}$]")
