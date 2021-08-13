@@ -22,6 +22,9 @@ def ref_rock(wavelength, phase_angle):
 
 
 def ref_ice(wavelength, phase_angle):
+    # r_ice = np.load("ice.npy")
+    # ice = interp2d(np.linspace(250, 1100, 100), np.linspace(0.1, 100, 100), r_ice)
+    # return ice(wavelength, phase_angle)
     return 2 * ref_rock(wavelength, phase_angle)
 
 
@@ -39,17 +42,23 @@ def plot_data():
     i_f_rock = []
 
     for material in ["ice", "rock"]:
-        for phase_angle in [51, 58, 89, 92]:
+        for phase_angle in [51, 58, 89, 92, "92b"]:
             filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
             df = pd.read_csv(filename, names=["wavelength", "r"])
             reflectance = interp1d(df["wavelength"], df["r"], fill_value="extrapolate", kind='quadratic')
             if material == "ice":
                 c = RED
-                pa_ice.append(phase_angle)
+                if phase_angle == "92b":
+                    pa_ice.append(92)
+                else:
+                    pa_ice.append(phase_angle)
                 i_f_ice.append(reflectance(649))
             else:
-                c = "black"
-                pa_rock.append(phase_angle)
+                c = BLACK
+                if phase_angle == "92b":
+                    pa_rock.append(92)
+                else:
+                    pa_rock.append(phase_angle)
                 i_f_rock.append(reflectance(649))
 
             plt.scatter(df.wavelength, df.r, s=10, color=c, label="ice")
@@ -57,23 +66,33 @@ def plot_data():
     plt.xlabel("wavelength [nm]")
     plt.ylabel("I/F")
     plt.ylim(0, 0.15)
+    plt.title("different phase angles")
+    plt.savefig("deshapriya.png")
     plt.show()
 
-    phase_angles = np.arange(0.1, 90)
+    phase_angles = np.arange(0.001, 90)
     i = phase_angles
     e = np.zeros(phase_angles.shape)
     r = hapke_int(i, e, phase_angles, omega, theta, h_s, b0_s, h_c, b0_c, [g], 10)
 
-    plt.plot(phase_angles, r)
-    plt.scatter(pa_ice, i_f_ice, color=RED)
-    plt.scatter(pa_rock, i_f_rock, color="black")
+    plt.plot(phase_angles, r, color=BLACK, ls="--", label="hapke rock")
+    plt.plot(phase_angles, 2*r, color=RED, ls="--", label="hapke ice?")
+    plt.scatter(pa_ice, i_f_ice, color=RED, label="ice")
+    plt.scatter(pa_rock, i_f_rock, color=BLACK, label="rock")
     plt.xlabel("phase angle")
     plt.ylabel("I/F")
+    plt.title(r"$\lambda$ = 643 nm")
+    plt.legend()
+    plt.savefig("deshapriya_phase.png")
     plt.show()
 
 
 if __name__ == "__main__":
-    material = "rock"
+
+
+    plot_data()
+    exit()
+    material = "ice"
     phase_angle = 58
     filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
     df = pd.read_csv(filename, names=["wavelength", "r"])
@@ -81,7 +100,7 @@ if __name__ == "__main__":
 
 
     def normalized_reflectance(wavelength):
-        return reflectance(wavelength) / reflectance(649)
+        return 3 * reflectance(wavelength) / reflectance(649)
 
 
     def ref(wavelength, phase_angles):
@@ -101,11 +120,10 @@ if __name__ == "__main__":
     phase_angles = np.linspace(0.1, 100, 100)
     img = ref(wavelengths, phase_angles)
     plt.imshow(img)
-
-    np.save("rock.npy", img.T)
+    np.save(f"{material}.npy", img.T)
     plt.show()
 
-    r_rock = np.load("rock.npy")
+    r_rock = np.load(f"{material}.npy")
     rock = interp2d(np.linspace(250, 1100, 100), np.linspace(0.1, 100, 100), r_rock)
 
     for material in ["ice", "rock"]:
@@ -113,11 +131,18 @@ if __name__ == "__main__":
             filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
             df = pd.read_csv(filename, names=["wavelength", "r"])
             reflectance = interp1d(df["wavelength"], df["r"], fill_value="extrapolate", kind='quadratic')
+            plt.title(f"alpha={phase_angle}°")
             if material == "ice":
                 c = RED
+                plt.scatter(df.wavelength, df.r, s=10, color=c, label="ice")
+                plt.plot(wavelengths, rock(wavelengths, phase_angle), color=c, ls="--")
+                plt.xlabel("wavelength [nm]")
+                plt.ylabel("I/F")
+                plt.ylim(0, 0.15)
+                plt.show()
             else:
                 c = "black"
-                plt.scatter(df.wavelength, df.r, s=10, color=c, label="ice")
+                plt.scatter(df.wavelength, df.r, s=10, color=c, label="rock")
                 plt.plot(wavelengths, rock(wavelengths, phase_angle), color=c, ls="--")
                 plt.xlabel("wavelength [nm]")
                 plt.ylabel("I/F")
