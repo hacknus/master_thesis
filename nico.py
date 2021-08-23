@@ -55,7 +55,7 @@ if __name__ == "__main__":
         return w * M(w) ** N * Q(w) * ref_rock(w, alpha) * S(w)
 
 
-    phase_angle = np.arange(0, 100, 5)
+    phase_angle = np.arange(1, 90, 5)
 
     N = 4
     t = []
@@ -79,8 +79,12 @@ if __name__ == "__main__":
     axes[0].set_xlabel("phase angle [°]")
     axes[0].set_ylabel("exposure time [s]")
 
-    axes[1].plot(wavelengths, ref_rock(wavelengths, phase_angle).T, color=BLACK, ls="--")
+    # phase_angle = 51
+
+    axes[1].plot(wavelengths, ref_rock(wavelengths, phase_angle), color=BLACK, ls="--")
     axes[1].set_xlabel("wavelength [nm]")
     axes[1].set_ylabel("I/F")
+
+    plt.savefig("plots/exposure.png")
 
     plt.show()

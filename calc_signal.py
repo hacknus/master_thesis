@@ -51,7 +51,7 @@ def make_filters_from_source(coca, initial=690, alpha=0):
     #     [251.17422176, 155.77892878, 115.4626612, 116.97686207, 130.64200627, 136.28019314, 129.22874446,
     #      127.13557219, 140.69100047, 172.73874097, 237.95641359])
     #
-    df = pd.read_csv(f"widths_alpha_{alpha}.csv")
+    df = pd.read_csv(f"data/widths_alpha_{alpha}.csv")
     widths_low = df.wl
     widths_up = df.wu
     centers = df.c
@@ -144,7 +144,7 @@ def make_filters_from_source(coca, initial=690, alpha=0):
     axes[0].set_ylabel("filter width [nm]")
     axes[0].set_title(f"t_exp ={CoCa.t_exp}s alpha={alpha}°")
     axes[0].legend()
-    plt.savefig("filter_widths_1_2.png")
+    plt.savefig("plots/filter_widths_1_2.png")
     plt.show()
 
 
@@ -158,7 +158,7 @@ def make_filters_from_source2(coca, initial=690, alpha=0):
     #     [251.17422176, 155.77892878, 115.4626612, 116.97686207, 130.64200627, 136.28019314, 129.22874446,
     #      127.13557219, 140.69100047, 172.73874097, 237.95641359])
     #
-    df = pd.read_csv(f"widths_alpha_{alpha}.csv")
+    df = pd.read_csv(f"data/widths_alpha_{alpha}.csv")
     widths_low = df.wl
     widths_up = df.wu
     centers = df.c
@@ -252,7 +252,7 @@ def make_filters_from_source2(coca, initial=690, alpha=0):
     axes[0].set_ylabel("filter width [nm]")
     axes[0].set_title(f"t_exp ={CoCa.t_exp}s alpha={alpha}°")
     axes[0].legend()
-    plt.savefig("filter_widths_2_1.png")
+    plt.savefig("plots/filter_widths_2_1.png")
     plt.show()
 
 
@@ -293,7 +293,7 @@ def solve_for_widths(coca, alpha=0):
         def func(width):
             i = quad(integrand_up, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
                 0]
-            signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
+            signal = CoCa.A_Omega / CoCa.G * CoCa.t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
             return signal - 2 ** 14
 
         sol = fsolve(func, 100)
@@ -303,7 +303,7 @@ def solve_for_widths(coca, alpha=0):
         def func(width):
             i = quad(integrand_low, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
                 0]
-            signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
+            signal = CoCa.A_Omega / CoCa.G * CoCa.t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
             return signal - 2 ** 14
 
         sol = fsolve(func, 100)
@@ -316,7 +316,7 @@ def solve_for_widths(coca, alpha=0):
             "wl": widths_low
             }
     df = pd.DataFrame(data=data)
-    df.to_csv(f"widths_alpha_{alpha}.csv", index=False)
+    df.to_csv(f"data/widths_alpha_{alpha}.csv", index=False)
     return
 
 
@@ -339,16 +339,16 @@ def plot_widths(centers, widths_up, widths_low):
     plt.xlabel("filter center [nm]")
     plt.ylabel("filter width [nm]")
     plt.title(f"t_exp ={CoCa.t_exp}")
-    plt.savefig("filter_widths.png")
+    plt.savefig("plots/filter_widths.png")
     plt.show()
 
 
 if __name__ == "__main__":
     CoCa = Camera()
     phase_angle = 51
-    t_exp = 0.0075
+    t_exp = 0.025
     CoCa.t_exp = t_exp
-    # solve_for_widths(CoCa, alpha=phase_angle)
+    solve_for_widths(CoCa, alpha=phase_angle)
     make_filters_from_source2(CoCa, alpha=phase_angle)
 
     # plot_widths(c, w1, w2)
