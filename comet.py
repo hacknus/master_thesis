@@ -1,7 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
 from scipy.integrate import nquad
-from hapke import hapke
+from hapke import hapke, hapke_ice
 import pandas as pd
 from scipy.interpolate import interp1d, interp2d
 from scipy.optimize import curve_fit
@@ -273,7 +274,7 @@ def plot_data():
 
 if __name__ == "__main__":
 
-    phase_angles = np.linspace(0.01, 90, 100)
+    phase_angles = np.linspace(0.01, 92, 100)
     i = phase_angles
     e = np.zeros(phase_angles.shape)
 
@@ -287,54 +288,79 @@ if __name__ == "__main__":
     plt.scatter([11] * len(phase11_ice), phase11_ice, color=RED, label=r"ice $\alpha=11$°")
     plt.scatter([51] * len(phase51_ice), phase51_ice, color=RED, label=r"ice $\alpha=51$°")
     r = hapke(phase_angles, 649)
-    print(r.shape)
-    plt.plot(phase_angles, 1 * r, color=BLACK, ls="--", label="hapke rock")
-    plt.plot(phase_angles, 2 * r, color=RED, ls="--", label="hapke ice?")
-
-    plt.legend()
-    plt.xlabel("phase angle [°]")
-    plt.ylabel("I/F")
-    plt.savefig("plots/clement_phase.png")
-    plt.show()
-
-    fig, ax = plt.subplots(nrows=1, sharex=True)
-    phase_angle = 51
-
-    plot_clement(ax, phase_angle)
-
-    wavelengths = np.linspace(300, 1100)
-    rock = hapke(phase_angle, wavelengths).T
-    ice = hapke(phase_angle, wavelengths).T*2
-    #rock = hapke(phase_angle, wavelengths)
-    #ice = 2 * hapke(phase_angle, wavelengths)
-    ax.plot(wavelengths, rock, ls="--", color=BLACK, label="rock fornasier")
-    ax.plot(wavelengths, ice, ls="--", color=RED, label="ice fornasier")
-    ax.legend()
-    ax.set_title(f"phase angle={phase_angle}°")
-    ax.set_xlabel("wavelengths [nm]")
-    ax.set_ylabel("I/F")
-    plt.savefig("plots/clement_wavelenghts.png")
-    plt.show()
+    r_ice = hapke_ice(phase_angles)
+    plt.plot(phase_angles, r, color=BLACK, ls="--", label="hapke rock")
+    plt.plot(phase_angles, r_ice, color=RED, ls="--", label="hapke ice?")
 
     for material in ["ice", "rock"]:
         for phase_angle in [51, 58, 89, 92]:
             filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
             df = pd.read_csv(filename, names=["wavelength", "r"])
-            reflectance = interp1d(df["wavelength"], df["r"], fill_value="extrapolate", kind='quadratic')
-            plt.title(f"alpha={phase_angle}°")
             if material == "ice":
                 c = RED
-                plt.scatter(df.wavelength, df.r, s=10, color=c, label="ice")
-                plt.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
-                plt.xlabel("wavelength [nm]")
-                plt.ylabel("I/F")
-                plt.ylim(0, 0.15)
-                plt.show()
+                plt.scatter([phase_angle] * len(df.r), df.r, s=10, marker="x", color=c)
+                #plt.plot(phase_angles, 2 * hapke(phase_angles, 649), color=c, ls="--")
+
             else:
-                c = "black"
-                plt.scatter(df.wavelength, df.r, s=10, color=c, label="rock")
-                plt.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
-                plt.xlabel("wavelength [nm]")
-                plt.ylabel("I/F")
-                plt.ylim(0, 0.15)
-                plt.show()
+                c = BLACK
+                plt.scatter([phase_angle] * len(df.r), df.r, s=10, marker="x", color=c)
+                #plt.plot(phase_angles, hapke(phase_angles, 649), color=c, ls="--")
+
+    a = mlines.Line2D([], [], color=BLACK, marker='x', ls='', label='rock deshapryia')
+    b = mlines.Line2D([], [], color=RED, marker='x', ls='', label='ice deshapryia')
+    c = mlines.Line2D([], [], color=BLACK, marker='o', ls='', label='rock clement')
+    d = mlines.Line2D([], [], color=RED, marker='o', ls='', label='ice clement')
+    # etc etc
+    plt.legend(handles=[a, b, c, d])
+    plt.xlabel("phase angle [°]")
+    plt.ylabel("I/F")
+    plt.title("649 nm")
+    plt.savefig("plots/hapke_deshapryia_clement_phase.png")
+    plt.show()
+
+    fig, ax = plt.subplots(nrows=1, sharex=True)
+    phase_angle = 51
+    phase_angles = np.array([51, 58, 89, 92])
+
+    plot_clement(ax, phase_angle)
+
+    wavelengths = np.linspace(300, 1100)
+    rock = hapke(phase_angles, wavelengths).T
+    ice = np.ones(wavelengths.shape)*hapke_ice(phase_angles)[:,None]
+    # rock = hapke(phase_angle, wavelengths)
+    # ice = 2 * hapke(phase_angle, wavelengths)
+    ax.plot(wavelengths, rock, ls="--", color=BLACK, label="rock clement")
+    ax.plot(wavelengths, ice.T, ls="--", color=RED, label="ice clement")
+    # ax.legend()
+    # ax.set_title(f"phase angle={phase_angle}°")
+    # ax.set_xlabel("wavelengths [nm]")
+    # ax.set_ylabel("I/F")
+    # plt.savefig("plots/hapke_clement_wavelenghts.png")
+    # plt.show()
+
+    for material in ["ice", "rock"]:
+        for phase_angle in [51, 58, 89, 92]:
+            filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
+            df = pd.read_csv(filename, names=["wavelength", "r"])
+            if material == "ice":
+                c = RED
+                ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
+                #ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
+
+            else:
+                c = BLACK
+                ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
+                #ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
+    ax.set_xlabel("wavelength [nm]")
+    ax.set_ylabel("I/F")
+    ax.set_ylim(0, 0.15)
+    ax.set_title("different phase angles")
+
+    a = mlines.Line2D([], [], color=BLACK, marker='x', ls='', label='rock deshapryia')
+    b = mlines.Line2D([], [], color=RED, marker='x', ls='', label='ice deshapryia')
+    c = mlines.Line2D([], [], color=BLACK, marker='o', ls='', label='rock clement')
+    d = mlines.Line2D([], [], color=RED, marker='o', ls='', label='ice clement')
+    # etc etc
+    plt.legend(handles=[a, b, c, d])
+    plt.savefig("plots/hapke_deshapriya_clement.png")
+    plt.show()

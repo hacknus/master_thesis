@@ -32,7 +32,6 @@ def hapke_roughness(mu, mu0, alpha, slope):
                           2 - E_1(i, theta) - psi / np.pi * E_1(e, theta)))
 
     S = mu_e / eta_e * mu0[:, None] / eta0_e * chi / (1 - f + f * chi * (mu[:, None] / eta_e))
-    print(mu0_e.shape)
     output = {'sfun': S, 'imue': mu0_e, 'emue': mu_e}
     return output
 
@@ -105,7 +104,58 @@ def hapke(alpha, wavelength):
     brdf_val = r_val / np.cos(i)[:, None]
     reff_val = np.pi * brdf_val
 
-    f = reff_val
+    f = iof_val
+    f = np.squeeze(f)
+
+    return f
+
+
+def hapke_ice(alpha):
+    if type(alpha) != np.ndarray:
+        alpha = [alpha]
+
+    w = 0.047
+    theta = 15
+    g = -0.335
+    b0 = 2.38
+    hs = 0.06
+    b0_s = b0
+    omega = w
+
+    alpha = np.radians(alpha)
+    theta = np.radians(theta)
+
+    slope = theta
+    i = alpha
+    if type(alpha) != np.ndarray:
+        e = 0
+    else:
+        e = np.zeros(alpha.shape)
+
+    mu0 = np.cos(i)
+    mu = np.cos(e)
+
+    rc = hapke_roughness(mu, mu0, alpha, slope)
+    mu0 = rc['imue']
+    mu = rc['emue']
+    k = 1.2
+
+    k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
+    b_0 = 1. / (1. + k_opp)
+    bsh = 1. + b0_s * b_0
+
+    roughness_correction = rc['sfun']
+
+    f = k * (omega / (4. * np.pi)) * (mu0 / (mu0 + mu)) * (
+            single_part_scat_func(alpha, g) * bsh + h_function(mu0 / k, omega)
+            * h_function(mu / k, omega) - 1.) * roughness_correction
+
+    r_val = f
+    iof_val = np.pi * r_val
+    brdf_val = r_val / np.cos(i)[:, None]
+    reff_val = np.pi * brdf_val
+
+    f = iof_val
     f = np.squeeze(f)
 
     return f
