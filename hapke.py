@@ -12,24 +12,38 @@ def E_2(x, theta):
     return np.exp(-1 / (np.pi * np.tan(theta) ** 2 * np.tan(x)[:, None] ** 2))
 
 
-def hapke_roughness(mu, mu0, alpha, slope):
+def hapke_roughness(mu, mu0, slope, alpha):
+    """
+    This is the hapke roughness function as described by hapke for the case of
+    e <= i. Psi = phase angle.
+    :param mu: cos(e)
+    :type mu: numpy array
+    :param mu0: cos(i)
+    :type mu0: numpy array
+    :param slope: theta
+    :type slope: numpy array
+    :param alpha: phase angle
+    :type alpha: numpy array
+    :return: roughness correction, mu' and mu0'
+    :rtype: dictionary
+    """
     i = np.arccos(mu0)
     e = np.arccos(mu)
-    e = np.ones(mu.shape) * 1e-7
+    e[e == 0] = 1e-7
     theta = slope
-    psi = np.zeros(theta.shape)
-    f = np.exp(-2 * np.tan(psi / 2))
+    psi = alpha  # np.zeros(theta.shape)
+    f = np.exp(-2 * np.tan(psi[:, None] / 2))
     chi = 1 / np.sqrt(1 + np.pi * np.tan(theta) ** 2)
 
     eta_e = chi * (np.cos(e)[:, None] + np.sin(e)[:, None] * np.tan(theta) * (E_2(e, theta) / (2 - E_1(e, theta))))
     eta0_e = chi * (np.cos(i)[:, None] + np.sin(i)[:, None] * np.tan(theta) * (E_2(i, theta) / (2 - E_1(i, theta))))
 
     mu0_e = chi * (np.cos(i)[:, None] + np.sin(i)[:, None] * np.tan(theta) * (
-            E_2(i, theta) - np.sin(psi / 2) ** 2 * E_2(e, theta)) / (
-                           2 - E_1(i, theta) - psi / np.pi * E_1(e, theta)))
+            E_2(i, theta) - np.sin(psi[:, None] / 2) ** 2 * E_2(e, theta)) / (
+                           2 - E_1(i, theta) - psi[:, None] / np.pi * E_1(e, theta)))
     mu_e = chi * (np.cos(e)[:, None] + np.sin(e)[:, None] * np.tan(theta) * (
-            np.cos(psi) * E_2(i, theta) + np.sin(psi / 2) ** 2 * E_2(e, theta)) / (
-                          2 - E_1(i, theta) - psi / np.pi * E_1(e, theta)))
+            np.cos(psi[:, None]) * E_2(i, theta) + np.sin(psi[:, None] / 2) ** 2 * E_2(e, theta)) / (
+                          2 - E_1(i, theta) - psi[:, None] / np.pi * E_1(e, theta)))
 
     S = mu_e / eta_e * mu0[:, None] / eta0_e * chi / (1 - f + f * chi * (mu[:, None] / eta_e))
     output = {'sfun': S, 'imue': mu0_e, 'emue': mu_e}
@@ -53,7 +67,17 @@ def h_function(x, w):
 
 
 def hapke(alpha, wavelength):
-    df = pd.read_csv("data/hapke.csv")
+    """
+    This is the hapke model (antoine adaptation)
+
+    :param alpha: phase angle
+    :type alpha: numpy array
+    :param wavelength: wavelength
+    :type wavelength: numpy array
+    :return: I/F
+    :rtype: numpy array
+    """
+    df = pd.read_csv("data/fournasier_hapke.csv")
     w_func = interp1d(df.wavelengths, df.w, fill_value="extrapolate", kind="linear")
     theta_func = interp1d(df.wavelengths, df.theta, fill_value="extrapolate", kind="linear")
     g_func = interp1d(df.wavelengths, df.g, fill_value="extrapolate", kind="linear")
@@ -84,7 +108,7 @@ def hapke(alpha, wavelength):
     mu0 = np.cos(i)
     mu = np.cos(e)
 
-    rc = hapke_roughness(mu, mu0, alpha, slope)
+    rc = hapke_roughness(mu, mu0, slope, alpha)
     mu0 = rc['imue']
     mu = rc['emue']
     k = 1.
@@ -111,6 +135,14 @@ def hapke(alpha, wavelength):
 
 
 def hapke_ice(alpha):
+    """
+    This is hapke model with fixed parameters described by hasslemann et al (2017) on page S565
+
+    :param alpha: phase angle
+    :type alpha: numpy array
+    :return: I/F
+    :rtype: numpy array
+    """
     if type(alpha) != np.ndarray:
         alpha = [alpha]
 
@@ -121,6 +153,7 @@ def hapke_ice(alpha):
     hs = 0.06
     b0_s = b0
     omega = w
+    k = 1.198
 
     alpha = np.radians(alpha)
     theta = np.radians(theta)
@@ -135,10 +168,9 @@ def hapke_ice(alpha):
     mu0 = np.cos(i)
     mu = np.cos(e)
 
-    rc = hapke_roughness(mu, mu0, alpha, slope)
+    rc = hapke_roughness(mu, mu0, slope, alpha)
     mu0 = rc['imue']
     mu = rc['emue']
-    k = 1.2
 
     k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
     b_0 = 1. / (1. + k_opp)
@@ -161,14 +193,68 @@ def hapke_ice(alpha):
     return f
 
 
+def disk_int_hapke(alpha, wavelength):
+    """
+    This is the disk integrated hapke model described by fournasier et. al. (2015) on page 5.
+
+    :param alpha: phase angle
+    :type alpha: numpy array
+    :param wavelength: wavelength
+    :type wavelength: numpy array
+    :return: I/F
+    :rtype: numpy array
+    """
+    df = pd.read_csv("data/fournasier_hapke.csv")
+    w_func = interp1d(df.wavelengths, df.w, fill_value="extrapolate", kind="linear")
+    theta_func = interp1d(df.wavelengths, df.theta, fill_value="extrapolate", kind="linear")
+    g_func = interp1d(df.wavelengths, df.g, fill_value="extrapolate", kind="linear")
+    b0_func = interp1d(df.wavelengths, df.b0, fill_value="extrapolate", kind="linear")
+    hs_func = interp1d(df.wavelengths, df.hs, fill_value="extrapolate", kind="linear")
+
+    if type(alpha) != np.ndarray:
+        alpha = [alpha]
+
+    w = w_func(wavelength)
+    theta = theta_func(wavelength)
+    g = g_func(wavelength)
+    b0 = b0_func(wavelength)
+    hs = hs_func(wavelength)
+    b0_s = b0
+
+    alpha = np.radians(alpha)
+    theta = np.radians(theta)
+
+    r = (1 - np.sqrt(1 - w)) / (1 + np.sqrt(1 - w))
+    k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
+    b_0 = 1. / (1. + k_opp)
+    bsh = 1. + b0_s * b_0
+
+    K = np.exp(
+        -0.32 * theta * np.sqrt(np.tan(theta) * np.tan(alpha[:, None] / 2)) - 0.52 * theta * np.tan(theta) * np.tan(
+            alpha[:, None] / 2))
+
+    return K * ((w / 8 * (bsh * single_part_scat_func(alpha, g) - 1) + r / 2 * (1 - r)) * (
+            1 - np.sin(alpha[:, None] / 2) * np.tan(alpha[:, None] / 2) * np.log(
+        1 / np.tan(alpha[:, None] / 4))) + 2 / (
+                        3 * np.pi) * r ** 2 * (
+                        np.sin(alpha[:, None]) + (np.pi - alpha[:, None]) * np.cos(alpha[:, None])))
+
+
 if __name__ == "__main__":
     phase_angles = np.arange(1, 90)
     wavelengths = np.linspace(300, 1100, 1000)
-    # plt.plot(phase_angles, hapke_int(phase_angles, 500))
-    # plt.plot(wavelengths, hapke(phase_angles, 600))
-    # plt.plot(wavelengths, hapke(phase_angles, 700))
-    print(hapke(phase_angles, 700).shape)
-    plt.plot(wavelengths, hapke(51, wavelengths).T, ls="--")
-    # plt.plot(phase_angles, hapke(phase_angles, 600), ls="--")
-    # plt.plot(phase_angles, hapke(phase_angles, 700), ls="--")
+    plt.plot(phase_angles, hapke(phase_angles, 649), label="hapke")
+    plt.plot(phase_angles, disk_int_hapke(phase_angles, 649), label="disk integrated hapke")
+    plt.plot(phase_angles, hapke_ice(phase_angles), label="hapke ice")
+    plt.xlabel("phase angle [°]")
+    plt.ylabel("I/F")
+    plt.legend()
+    plt.show()
+
+    plt.plot(wavelengths, hapke(11, wavelengths).T, ls="--", label="hapke")
+    plt.plot(wavelengths, disk_int_hapke(11, wavelengths).T, ls="--", label="disk integrated hapke")
+    plt.plot(wavelengths, hapke_ice(np.ones(wavelengths.shape)*11).T, ls="--", label="hapke ice")
+    plt.xlabel("wavelength [nm]")
+    plt.ylabel("I/F")
+    plt.legend()
     plt.show()

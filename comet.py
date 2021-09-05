@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 from scipy.integrate import nquad
-from hapke import hapke, hapke_ice
+from hapke import hapke, hapke_ice, disk_int_hapke
 import pandas as pd
 from scipy.interpolate import interp1d, interp2d
 from scipy.optimize import curve_fit
@@ -289,22 +289,25 @@ if __name__ == "__main__":
     plt.scatter([51] * len(phase51_ice), phase51_ice, color=RED, label=r"ice $\alpha=51$°")
     r = hapke(phase_angles, 649)
     r_ice = hapke_ice(phase_angles)
+    r_di = disk_int_hapke(phase_angles, 649)
     plt.plot(phase_angles, r, color=BLACK, ls="--", label="hapke rock")
     plt.plot(phase_angles, r_ice, color=RED, ls="--", label="hapke ice?")
+    plt.plot(phase_angles, r_di, ls="-.", color=BLACK, label="disk int hapke")
 
     for material in ["ice", "rock"]:
-        for phase_angle in [51, 58, 89, 92]:
+        for phase_angle in [51, 58, 89, 92, "92b"]:
             filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
             df = pd.read_csv(filename, names=["wavelength", "r"])
+            if phase_angle == "92b": phase_angle = 92
             if material == "ice":
                 c = RED
                 plt.scatter([phase_angle] * len(df.r), df.r, s=10, marker="x", color=c)
-                #plt.plot(phase_angles, 2 * hapke(phase_angles, 649), color=c, ls="--")
+                # plt.plot(phase_angles, 2 * hapke(phase_angles, 649), color=c, ls="--")
 
             else:
                 c = BLACK
                 plt.scatter([phase_angle] * len(df.r), df.r, s=10, marker="x", color=c)
-                #plt.plot(phase_angles, hapke(phase_angles, 649), color=c, ls="--")
+                # plt.plot(phase_angles, hapke(phase_angles, 649), color=c, ls="--")
 
     a = mlines.Line2D([], [], color=BLACK, marker='x', ls='', label='rock deshapryia')
     b = mlines.Line2D([], [], color=RED, marker='x', ls='', label='ice deshapryia')
@@ -319,18 +322,19 @@ if __name__ == "__main__":
     plt.show()
 
     fig, ax = plt.subplots(nrows=1, sharex=True)
+    phase_angles = np.array([51, 89])
     phase_angle = 51
-    phase_angles = np.array([51, 58, 89, 92])
-
     plot_clement(ax, phase_angle)
 
-    wavelengths = np.linspace(300, 1100)
+    wavelengths = np.linspace(200, 1100)
     rock = hapke(phase_angles, wavelengths).T
-    ice = np.ones(wavelengths.shape)*hapke_ice(phase_angles)[:,None]
+    # ice = np.ones(wavelengths.shape) * hapke_ice(phase_angles)[:, None]
+    r = disk_int_hapke(phase_angles, wavelengths).T
     # rock = hapke(phase_angle, wavelengths)
     # ice = 2 * hapke(phase_angle, wavelengths)
     ax.plot(wavelengths, rock, ls="--", color=BLACK, label="rock clement")
-    ax.plot(wavelengths, ice.T, ls="--", color=RED, label="ice clement")
+    # ax.plot(wavelengths, ice.T, ls="--", color=RED, label="ice clement")
+    ax.plot(wavelengths, r, ls="-.", color=BLACK, label="disk int hapke")
     # ax.legend()
     # ax.set_title(f"phase angle={phase_angle}°")
     # ax.set_xlabel("wavelengths [nm]")
@@ -339,18 +343,19 @@ if __name__ == "__main__":
     # plt.show()
 
     for material in ["ice", "rock"]:
-        for phase_angle in [51, 58, 89, 92]:
+        for phase_angle in [51, 58, 89, 92, "92b"]:
             filename = f"data/deshapriya/67p_{material}_alpha_{phase_angle}.csv"
             df = pd.read_csv(filename, names=["wavelength", "r"])
+            if phase_angle == "92b": phase_angle = 92
             if material == "ice":
                 c = RED
-                ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
-                #ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
+                # ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
+                # ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
 
             else:
                 c = BLACK
-                ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
-                #ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
+                # ax.scatter(df.wavelength, df.r, s=10, marker="x", color=c)
+                # ax.plot(wavelengths, hapke(phase_angle, wavelengths), color=c, ls="--")
     ax.set_xlabel("wavelength [nm]")
     ax.set_ylabel("I/F")
     ax.set_ylim(0, 0.15)
