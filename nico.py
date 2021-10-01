@@ -52,10 +52,10 @@ if __name__ == "__main__":
     CoCa = Camera()
 
     def integrand(w, N=4, alpha=0):
-        return w * M(w) ** N * Q(w) * ref_rock(w, alpha) * S(w)
+        return w * M(w) ** N * Q(w) * ref_rock(w, alpha).T * S(w)
 
 
-    phase_angle = np.arange(1, 90, 5)
+    phase_angle = np.arange(1, 90, 20)
 
     N = 4
     t = []
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 
     # phase_angle = 51
 
-    axes[1].plot(wavelengths, ref_rock(wavelengths, phase_angle), color=BLACK, ls="--")
+    axes[1].plot(wavelengths, ref_rock(wavelengths, phase_angle).T, color=BLACK, ls="--")
     axes[1].set_xlabel("wavelength [nm]")
     axes[1].set_ylabel("I/F")
 

@@ -11,6 +11,7 @@ class Camera:
         self.A_aperture = (self.d_aperture / 2) ** 2 * np.pi
         self.focal_length = 0.880  # meters
         self.Omega = 0.64e-10
+        self.Omega = self.A_pixel / self.focal_length ** 2
         self.A_Omega = self.A_aperture * self.A_pixel / self.focal_length ** 2
         self.r_h = r_h  # A.U.
         self.t_exp = t_exp  # seconds

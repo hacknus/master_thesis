@@ -9,6 +9,7 @@ from comet import ref_rock, ref_ice
 from camera import Camera
 from unibe import *
 from make_filters import make_filter, init_filters_thomas
+from SNR import snr
 
 
 # solar spectra: https://www.pveducation.org/pvcdrom/appendices/standard-solar-spectra
@@ -83,9 +84,9 @@ def make_filters_from_source(coca, initial=690, alpha=0):
     w3_std = width_std(c3)
 
     def func(center):
-        return center + width(center) / 2 - (c1 - w1 / 2)
+        return c1 - width(center) / 2 - w1 / 2 - center
 
-    c0 = fsolve(func, c1 - 2 * w1)
+    c0 = fsolve(func, c1 - w1)
     print(c0)
     c0 = c0[0]
     w0 = width(c0)
@@ -142,7 +143,7 @@ def make_filters_from_source(coca, initial=690, alpha=0):
     axes[1].set_ylabel("filter calculated")
     axes[2].set_ylabel("filter thomas")
     axes[0].set_ylabel("filter width [nm]")
-    axes[0].set_title(f"t_exp ={CoCa.t_exp}s alpha={alpha}°")
+    axes[0].set_title(f"t_exp ={coca.t_exp*1000:4.2f}ms alpha={alpha}°")
     axes[0].legend()
     plt.savefig("plots/filter_widths_1_2.png")
     plt.show()
@@ -250,7 +251,8 @@ def make_filters_from_source2(coca, initial=690, alpha=0):
     axes[1].set_ylabel("filter calculated")
     axes[2].set_ylabel("filter thomas")
     axes[0].set_ylabel("filter width [nm]")
-    axes[0].set_title(f"t_exp ={CoCa.t_exp}s alpha={alpha}°")
+
+    axes[0].set_title(f"t_exp ={coca.t_exp*1000:4.2f}ms alpha={alpha}°")
     axes[0].legend()
     plt.savefig("plots/filter_widths_2_1.png")
     plt.show()
@@ -272,7 +274,7 @@ def solve_for_widths(coca, alpha=0):
     N = 4
     widths_up = []
     widths_low = []
-    centers = range(450, 1000, 50)
+    centers = range(400, 1000, 50)
 
     # plt.plot(centers, ref_rock(centers, alpha), color=BLACK, label="rock")
     # plt.plot(centers, ref_ice(centers, alpha), color=RED, label="ice")
@@ -291,25 +293,25 @@ def solve_for_widths(coca, alpha=0):
 
     for filter_center in centers:
         def func(width):
-            i = quad(integrand_up, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
+            i = quad(integrand_low, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
                 0]
-            signal = CoCa.A_Omega / CoCa.G * CoCa.t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
-            return signal - 2 ** 14
+            signal = coca.A_Omega / coca.G * coca.t_exp * i / (const.h * const.c * coca.r_h ** 2) * 1e-9
+            return snr(signal * coca.G) - 100
 
         sol = fsolve(func, 100)
         print(filter_center, sol)
         widths_low.append(sol[0])
-
-        def func(width):
-            i = quad(integrand_low, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
-                0]
-            signal = CoCa.A_Omega / CoCa.G * CoCa.t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
-            return signal - 2 ** 14
-
-        sol = fsolve(func, 100)
-        print(filter_center, sol)
-        widths_up.append(sol[0])
-    widths_up = np.array(widths_up)
+        #
+        # def func(width):
+        #     i = quad(integrand_low, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
+        #         0]
+        #     signal = coca.A_Omega / coca.G * coca.t_exp * i / (const.h * const.c * coca.r_h ** 2) * 1e-9
+        #     return snr(signal * coca.G) - 100
+        #
+        # sol = fsolve(func, 100)
+        # print(filter_center, sol)
+        # widths_up.append(sol[0])
+    widths_up = np.array(widths_low)
     widths_low = np.array(widths_low)
     data = {"c": centers,
             "wu": widths_up,
@@ -320,7 +322,7 @@ def solve_for_widths(coca, alpha=0):
     return
 
 
-def plot_widths(centers, widths_up, widths_low):
+def plot_widths(coca, centers, widths_up, widths_low):
     plt.plot(centers, widths_low + (widths_up - widths_low) / 2,
              color=RED, alpha=0.5)
     plt.fill_between(centers, widths_low, widths_up, color=RED, alpha=0.5)
@@ -332,23 +334,30 @@ def plot_widths(centers, widths_up, widths_low):
     c2 = 650
     c3 = 750
     c4 = 900
+
     plt.scatter(c1, w1, label="BLUE", color=BLUE)
     plt.scatter(c2, w2, label="ORANGE", color=ORANGE)
     plt.scatter(c3, w3, label="RED", color=RED)
     plt.scatter(c4, w4, label="NIR", color=BLACK)
     plt.xlabel("filter center [nm]")
     plt.ylabel("filter width [nm]")
-    plt.title(f"t_exp ={CoCa.t_exp}")
+    plt.title(f"t_exp ={coca.t_exp}")
     plt.savefig("plots/filter_widths.png")
     plt.show()
 
 
 if __name__ == "__main__":
     CoCa = Camera()
-    phase_angle = 51
+    phase_angle = 11
     t_exp = 0.025
+    df = pd.read_csv("data/texp.csv")
+
+    t10 = interp1d(df.alpha, df["texp10"], fill_value="extrapolate")
+    t80 = interp1d(df.alpha, df["texp80"], fill_value="extrapolate")
+    t_exp = t10(phase_angle) / 1000
+    t_exp = t_exp / 3
     CoCa.t_exp = t_exp
     solve_for_widths(CoCa, alpha=phase_angle)
-    make_filters_from_source2(CoCa, alpha=phase_angle)
+    make_filters_from_source(CoCa, initial=650, alpha=phase_angle)
 
     # plot_widths(c, w1, w2)
