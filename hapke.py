@@ -31,7 +31,7 @@ def hapke_roughness(mu, mu0, slope, alpha):
     e = np.arccos(mu)
     e[e == 0] = 1e-7
     theta = slope
-    psi = alpha  # np.zeros(theta.shape)
+    psi = alpha  # np.zeros(alpha.shape)
     f = np.exp(-2 * np.tan(psi[:, None] / 2))
     chi = 1 / np.sqrt(1 + np.pi * np.tan(theta) ** 2)
 
@@ -53,7 +53,7 @@ def hapke_roughness(mu, mu0, slope, alpha):
 def single_part_scat_func(alpha, g):
     # Single parameter henyey-Greenstein
     f = (1.0 - g ** 2) / ((1.0 + 2.0 * g * np.cos(alpha[:, None]) + g ** 2) ** 1.5)
-    return (f)
+    return f
 
 
 def h_function(x, w):
@@ -66,7 +66,7 @@ def h_function(x, w):
     return (f)
 
 
-def hapke(alpha, wavelength):
+def hapke(alpha, wavelength, kind="linear"):
     """
     This is the hapke model (antoine adaptation)
 
@@ -78,11 +78,11 @@ def hapke(alpha, wavelength):
     :rtype: numpy array
     """
     df = pd.read_csv("data/fournasier_hapke.csv")
-    w_func = interp1d(df.wavelengths, df.w, fill_value="extrapolate", kind="linear")
-    theta_func = interp1d(df.wavelengths, df.theta, fill_value="extrapolate", kind="linear")
-    g_func = interp1d(df.wavelengths, df.g, fill_value="extrapolate", kind="linear")
-    b0_func = interp1d(df.wavelengths, df.b0, fill_value="extrapolate", kind="linear")
-    hs_func = interp1d(df.wavelengths, df.hs, fill_value="extrapolate", kind="linear")
+    w_func = interp1d(df.wavelengths, df.w, fill_value="extrapolate", kind=kind)
+    theta_func = interp1d(df.wavelengths, df.theta, fill_value="extrapolate", kind=kind)
+    g_func = interp1d(df.wavelengths, df.g, fill_value="extrapolate", kind=kind)
+    b0_func = interp1d(df.wavelengths, df.b0, fill_value="extrapolate", kind=kind)
+    hs_func = interp1d(df.wavelengths, df.hs, fill_value="extrapolate", kind=kind)
 
     if type(alpha) != np.ndarray:
         alpha = [alpha]
@@ -94,6 +94,7 @@ def hapke(alpha, wavelength):
     hs = hs_func(wavelength)
     b0_s = b0
     omega = w
+    k = 1.
 
     alpha = np.radians(alpha)
     theta = np.radians(theta)
@@ -104,14 +105,14 @@ def hapke(alpha, wavelength):
         e = 0
     else:
         e = np.zeros(alpha.shape)
-
+    i = np.ones(alpha.shape) * 5/180*np.pi
+    e = alpha - i
     mu0 = np.cos(i)
     mu = np.cos(e)
 
     rc = hapke_roughness(mu, mu0, slope, alpha)
-    mu0 = rc['imue']
-    mu = rc['emue']
-    k = 1.
+    mu0 = rc['imue'][0]
+    mu = rc['emue'][0]
 
     k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
     b_0 = 1. / (1. + k_opp)
@@ -120,8 +121,8 @@ def hapke(alpha, wavelength):
     roughness_correction = rc['sfun']
 
     f = k * (omega / (4. * np.pi)) * (mu0 / (mu0 + mu)) * (
-            single_part_scat_func(alpha, g) * bsh + h_function(mu0 / k, omega)
-            * h_function(mu / k, omega) - 1.) * roughness_correction
+            single_part_scat_func(alpha, g) * bsh + h_function(np.cos(i)[:, None] / k, omega)
+            * h_function(np.cos(e)[:, None] / k, omega) - 1.) * roughness_correction
 
     r_val = f
     iof_val = np.pi * r_val
@@ -132,6 +133,61 @@ def hapke(alpha, wavelength):
     f = np.squeeze(f)
 
     return f
+
+
+def hapke_scaled(alpha, i, e, wavelength):
+    w = 0.034
+    theta = 28
+    g = -0.42
+    b0 = 2.25
+    hs = 0.061
+    b0_s = b0
+    omega = w
+    k = 1.2
+    if type(alpha) != np.ndarray:
+        alpha = np.array([alpha])
+    if type(i) != np.ndarray:
+        i = np.array([i])
+    if type(e) != np.ndarray:
+        e = np.array([e])
+    if alpha.shape == ():
+        alpha = np.array([alpha])
+    if i.shape == ():
+        i = np.array([i])
+    if e.shape == ():
+        e = np.array([e])
+    theta = np.radians(theta)
+    slope = theta
+    mu0 = np.cos(i)
+    mu = np.cos(e)
+
+    rc = hapke_roughness(mu, mu0, slope, alpha)
+    mu0 = rc['imue'][0]
+    mu = rc['emue'][0]
+
+    k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
+    b_0 = 1. / (1. + k_opp)
+    bsh = 1. + b0_s * b_0
+
+    roughness_correction = rc['sfun']
+
+    f = k * omega / (4. * np.pi) * (mu0 / (mu0 + mu)) * (
+            single_part_scat_func(alpha, g) * bsh + h_function(np.cos(i)[:, None] / k, omega * k)
+            * h_function(np.cos(e)[:, None] / k, omega * k) - 1.) * roughness_correction
+
+    r_val = f
+    iof_val = np.pi * r_val
+    brdf_val = r_val / np.cos(i)[:, None]
+    reff_val = np.pi * brdf_val
+
+    f = iof_val
+
+    ref = np.array([0.007365, 0.007775, 0.01095, 0.01209, 0.01483, 0.016885, 0.017385, 0.01799,
+                    0.0193, 0.02068, 0.021645])
+    wavelengths = np.array([269, 360, 481, 536, 649, 701, 744, 805, 882, 932, 989])
+    ref = interp1d(wavelengths, ref, fill_value="extrapolate")
+
+    return f / ref(649) * ref(wavelength)
 
 
 def hapke_ice(alpha):
@@ -153,7 +209,7 @@ def hapke_ice(alpha):
     hs = 0.06
     b0_s = b0
     omega = w
-    k = 1.198
+    k = 1
 
     alpha = np.radians(alpha)
     theta = np.radians(theta)
@@ -219,24 +275,20 @@ def disk_int_hapke(alpha, wavelength):
     g = g_func(wavelength)
     b0 = b0_func(wavelength)
     hs = hs_func(wavelength)
-    b0_s = b0
 
     alpha = np.radians(alpha)
     theta = np.radians(theta)
 
     r = (1 - np.sqrt(1 - w)) / (1 + np.sqrt(1 - w))
-    k_opp = (1. / hs) * np.tan(alpha[:, None] / 2.)
-    b_0 = 1. / (1. + k_opp)
-    bsh = 1. + b0_s * b_0
+    bsh = b0 / (1 + np.tan(alpha[:, None] / 2.) / hs)
 
     K = np.exp(
         -0.32 * theta * np.sqrt(np.tan(theta) * np.tan(alpha[:, None] / 2)) - 0.52 * theta * np.tan(theta) * np.tan(
             alpha[:, None] / 2))
 
-    return K * ((w / 8 * (bsh * single_part_scat_func(alpha, g) - 1) + r / 2 * (1 - r)) * (
+    return K * ((w / 8 * ((1 + bsh) * single_part_scat_func(alpha, g) - 1) + r / 2 * (1 - r)) * (
             1 - np.sin(alpha[:, None] / 2) * np.tan(alpha[:, None] / 2) * np.log(
-        1 / np.tan(alpha[:, None] / 4))) + 2 / (
-                        3 * np.pi) * r ** 2 * (
+        1 / np.tan(alpha[:, None] / 4))) + 2 / (3 * np.pi) * r ** 2 * (
                         np.sin(alpha[:, None]) + (np.pi - alpha[:, None]) * np.cos(alpha[:, None])))
 
 
@@ -253,7 +305,7 @@ if __name__ == "__main__":
 
     plt.plot(wavelengths, hapke(11, wavelengths).T, ls="--", label="hapke")
     plt.plot(wavelengths, disk_int_hapke(11, wavelengths).T, ls="--", label="disk integrated hapke")
-    plt.plot(wavelengths, hapke_ice(np.ones(wavelengths.shape)*11).T, ls="--", label="hapke ice")
+    plt.plot(wavelengths, hapke_ice(np.ones(wavelengths.shape) * 11).T, ls="--", label="hapke ice")
     plt.xlabel("wavelength [nm]")
     plt.ylabel("I/F")
     plt.legend()
