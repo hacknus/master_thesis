@@ -19,7 +19,7 @@ peak_linear_charge = 27000  # electrons
 
 
 def snr(s):
-    return np.sqrt(s) + read_out_noise + dark_current_noise
+    return s / (np.sqrt(s) )# + read_out_noise + dark_current_noise)
 
 
 c1 = 595.16
