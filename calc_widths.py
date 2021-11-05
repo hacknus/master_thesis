@@ -40,18 +40,17 @@ def solve_for_widths(coca, alpha=0):
     Q = get_detector()
     S = get_solar()
 
-    def integrand(w, N=4, alpha=0):
-        return w * M(w) ** N * Q(w) * ref_rock(w, alpha) * S(w)
+    def integrand(w, alpha=0):
+        return w * M(w) * Q(w) * ref_rock(w, alpha) * S(w)
 
-    N = 4
     widths100 = []
     widths80 = []
     widths60 = []
-    centers = range(400, 1050, 50)
+    centers = range(400, 1051, 50)
 
     for filter_center in centers:
         def func(width):
-            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
+            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(alpha))[
                 0]
             signal = coca.A_Omega / coca.G * coca.t_exp * i / (const.h * const.c * coca.r_h ** 2) * 1e-9
             print(f"snr: {snr(signal * coca.G):4.2f}")
@@ -62,7 +61,7 @@ def solve_for_widths(coca, alpha=0):
         widths100.append(sol[0])
 
         def func(width):
-            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
+            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(alpha))[
                 0]
             signal = coca.A_Omega / coca.G * coca.t_exp * i / (const.h * const.c * coca.r_h ** 2) * 1e-9
             print(f"snr: {snr(signal * coca.G):4.2f}")
@@ -73,7 +72,7 @@ def solve_for_widths(coca, alpha=0):
         widths80.append(sol[0])
 
         def func(width):
-            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(N, alpha))[
+            i = quad(integrand, filter_center - width / 2, filter_center + width / 2, args=(alpha))[
                 0]
             signal = coca.A_Omega / coca.G * coca.t_exp * i / (const.h * const.c * coca.r_h ** 2) * 1e-9
             print(f"snr: {snr(signal * coca.G):4.2f}")
@@ -82,6 +81,7 @@ def solve_for_widths(coca, alpha=0):
         sol = fsolve(func, 100)
         print(filter_center, sol)
         widths60.append(sol[0])
+
     widths100 = np.array(widths100)
     widths80 = np.array(widths80)
     widths60 = np.array(widths60)
@@ -112,14 +112,14 @@ def main(v=30, phase_angle=11):
     solve_for_widths(CoCa, alpha=phase_angle)
 
     c = np.linspace(400, 1000, 100)
-    df = pd.read_csv(f"data/widths_snr_{v}.csv")
+    df = pd.read_csv(f"data/widths_snr.csv")
     widths100_avg = df.widths_100
     widths80_avg = df.widths_80
     widths60_avg = df.widths_60
     centers = df.c
-    width100 = interp1d(centers, widths100_avg, kind="quadratic", fill_value="extrapolate")
-    width80 = interp1d(centers, widths80_avg, kind="quadratic", fill_value="extrapolate")
-    width60 = interp1d(centers, widths60_avg, kind="quadratic", fill_value="extrapolate")
+    width100 = interp1d(centers, widths100_avg, kind="linear", fill_value="extrapolate")
+    width80 = interp1d(centers, widths80_avg, kind="linear", fill_value="extrapolate")
+    width60 = interp1d(centers, widths60_avg, kind="linear", fill_value="extrapolate")
     plt.plot(c, width100(c), label="SNR 100")
     plt.plot(c, width80(c), label="SNR 80")
     plt.plot(c, width60(c), label="SNR 60")

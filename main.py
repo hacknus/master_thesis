@@ -22,8 +22,8 @@ def plot_reflectance():
     main_reflectance()
 
 
-def get_filters(mode="A", v=30, alpha=11):
-    Sol = Solver(alpha, v)
+def get_filters(mode="A", v=30):
+    Sol = Solver(v)
     Sol.run(mode)
 
 
@@ -61,18 +61,35 @@ Q = get_detector()
 S = get_solar()
 
 
-def integrand(w, N=4, alpha=0, ice=False):
+def integrand(w, alpha=0, ice=False):
     if ice:
-        return w * M(w) ** N * Q(w) * ref_ice(w, alpha).T * S(w)
+        return w * M(w) * Q(w) * ref_ice(w, alpha).T * S(w)
     else:
-        return w * M(w) ** N * Q(w) * ref_rock(w, alpha).T * S(w)
+        return w * M(w) * Q(w) * ref_rock(w, alpha).T * S(w)
+
+
+def get_snr(r_h=1, alpha=11, v=30, mode="A", ice=False):
+    CoCa = Camera()
+    CoCa.r_h = r_h
+    df = pd.read_csv("data/texp.csv")
+    t10 = interp1d(df.alpha, df["texp10"], fill_value="extrapolate")
+    df = pd.read_csv(f"data/filters_{mode}.csv")
+    colors = [BLUE, ORANGE, RED, BLACK]
+    centers = df.centers
+    widths = df.widths
+    print(f"calculating for mode = {mode}, v = {v} km/s, r_h = {r_h} a.u. and ice = {ice}, alpha = {alpha}")
+    for filter_center, filter_width, color in zip(centers, widths, colors):
+        t_exp = t10(alpha) / 1000 / (v / 10)
+        i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2,
+                 args=(alpha, ice))[0]
+        signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
+        print(f"center = {filter_center:.1f}, width = {filter_width:.1f}, SNR = {snr(signal * CoCa.G):.1f}")
 
 
 def plot_snr(r_h=1, mode="A", ice=False):
     relative_velocities = [10, 30, 80]
     CoCa = Camera()
     CoCa.r_h = r_h
-    N = 4
     phase_angles = np.arange(0, 90, 10)
     df = pd.read_csv("data/texp.csv")
     t10 = interp1d(df.alpha, df["texp10"], fill_value="extrapolate")
@@ -86,13 +103,13 @@ def plot_snr(r_h=1, mode="A", ice=False):
             snrs = []
             t_exp = t10(11) / 1000 / (v / 10)
             i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2,
-                     args=(N, 11, ice))[0]
+                     args=(11, ice))[0]
             signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
             print(f"v = {v}, center = {filter_center:.2f}, SNR = {snr(signal * CoCa.G):.2f}")
             for alpha in phase_angles:
                 t_exp = t10(alpha) / 1000 / (v / 10)
                 i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2,
-                         args=(N, alpha, ice))[0]
+                         args=(alpha, ice))[0]
                 signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
                 snrs.append(snr(signal * CoCa.G))
             snrs_func = interp1d(phase_angles, snrs, fill_value="extrapolate", kind="quadratic")
@@ -105,7 +122,7 @@ def plot_snr(r_h=1, mode="A", ice=False):
                shadow=True, borderpad=1)
     plt.xlabel("phase angle [°]")
     plt.ylabel("SNR")
-    plt.savefig(f"plots/snrs_{r_h}au_{mode}_ice={ice}.pdf")
+    plt.savefig(f"plots/snrs_{r_h}au_{mode}_ice={ice}_new_new.pdf")
     plt.show()
 
 
@@ -114,10 +131,23 @@ if __name__ == "__main__":
     v = 30
     alpha = 11
     # plot_reflectance()
-    # get_filters(mode, v, alpha)
+    # get_filters("A", v)
+    # get_filters("B", v)
+    get_filters("C", v)
     # plot_widths(v, alpha)
-    # plot_filters(mode, v, alpha)
-    plot_snr(mode="A")
-    plot_snr(mode="A", ice=True)
-    plot_snr(mode="B")
+    # plot_filters("A", v, alpha)
+    # plot_filters("B", v, alpha)
+    plot_filters("C", v, alpha)
+
+    # plot_snr(mode="A")
+    # plot_snr(mode="A", ice=True)
+    # plot_snr(mode="B")
     # plot_snr(mode="B", ice=True)
+    plot_snr(mode="C")
+    # plot_snr(mode="C", ice=True)
+
+    # get_snr(mode="A")
+    # get_snr(mode="A", ice=True)
+    # get_snr(mode="B")
+    # get_snr(mode="B", ice=True)
+    get_snr(mode="C")

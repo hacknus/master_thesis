@@ -32,6 +32,8 @@ if __name__ == "__main__":
     S = get_solar()
     wavelengths = np.linspace(300, 1050, 1000)
     plt.plot(wavelengths, 100 * M(wavelengths), color=BLACK)
+    plt.plot(wavelengths, 100 * M(wavelengths)**4, color=BLACK, ls="--")
+    plt.plot(wavelengths, 100 * M(wavelengths)**0.25, color=BLACK, ls=":")
     plt.xlabel("wavelength [nm]")
     plt.ylabel("reflection [%]")
     plt.savefig("plots/mirrors.pdf")
