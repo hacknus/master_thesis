@@ -19,7 +19,9 @@ peak_linear_charge = 27000  # electrons
 
 
 def snr(s):
-    return np.sqrt(s) + read_out_noise + dark_current_noise
+    return np.sqrt(s)
+    # the above is a simplified version of:
+    # return s / np.sqrt(np.sqrt(s)**2 + read_out_noise**2 + dark_current_noise**2)
 
 
 c1 = 595.16
@@ -66,13 +68,12 @@ if __name__ == "__main__":
     CoCa = Camera()
 
 
-    def integrand(w, N=4, alpha=0):
-        return w * M(w) ** N * Q(w) * ref_rock(w, alpha).T * S(w)
+    def integrand(w, alpha=0):
+        return w * M(w) * Q(w) * ref_rock(w, alpha).T * S(w)
 
 
     phase_angle = np.arange(1, 90, 10)
 
-    N = 4
     snr_vals = []
     snr_vals_80 = []
     signals = []
@@ -86,7 +87,7 @@ if __name__ == "__main__":
     t10 = interp1d(df.alpha, df["texp10"], fill_value="extrapolate")
     t80 = interp1d(df.alpha, df["texp80"], fill_value="extrapolate")
     for alpha in phase_angle:
-        i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(N, alpha))[0]
+        i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(alpha))[0]
         t_exp = t10(alpha)/1000
         signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
         snr_vals.append(snr(signal * CoCa.G))
@@ -98,7 +99,7 @@ if __name__ == "__main__":
         signals_80.append(signal)
 
         def func(t_exp):
-            i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(N, alpha))[0]
+            i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(alpha))[0]
             signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
             return snr(signal * CoCa.G) - 100
 
@@ -109,7 +110,7 @@ if __name__ == "__main__":
 
 
         def func(t_exp):
-            i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(N, alpha))[0]
+            i = quad(integrand, filter_center - filter_width / 2, filter_center + filter_width / 2, args=(alpha))[0]
             signal = CoCa.A_Omega / CoCa.G * t_exp * i / (const.h * const.c * CoCa.r_h ** 2) * 1e-9
             return snr(signal * CoCa.G) - 164.3
 
@@ -146,6 +147,6 @@ if __name__ == "__main__":
     axes[3].set_xlabel("wavelength [nm]")
     axes[3].set_ylabel("I/F")
 
-    plt.savefig("plots/snr.png")
+    plt.savefig("plots/snr_new.png")
 
     plt.show()

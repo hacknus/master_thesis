@@ -10,7 +10,6 @@ from camera import Camera
 import scipy.constants as const
 from SNR import snr
 
-
 def get_mirror():
     df_mirror = pd.read_csv("data/mirrors_transmission.txt", delimiter="\s")
     M = interp1d(df_mirror.wavelength, df_mirror.transmission, fill_value="extrapolate")
@@ -113,7 +112,10 @@ class DraggableScatter():
 def main(mode, v=30, alpha=11):
     fig, axes = plt.subplots(nrows=2, sharex=True)
 
-    wavelengths = np.linspace(300, 1100, 1000)
+    if mode != "C":
+        wavelengths = np.linspace(300, 1100, 1000)
+    else:
+        wavelengths = np.linspace(200, 1100, 1000)
 
     df = pd.read_csv(f"data/widths_snr.csv")
     widths100_avg = df.widths_100
@@ -130,7 +132,11 @@ def main(mode, v=30, alpha=11):
     axes[0].plot(np.linspace(380, 1000, 100), width60(np.linspace(380, 1000, 100)), ls="--", color=BLACK, zorder=-1,
                  label="SNR 60")
     axes[0].legend()
-    axes[0].set_ylim(0.8 * min(df.widths_60), max(df.widths_80))
+    if mode != "C":
+        axes[0].set_ylim(0.8 * min(df.widths_60), max(df.widths_80))
+    else:
+        axes[0].set_xticks(np.arange(200,1101,100))
+        axes[0].set_xticklabels(np.arange(200, 1101, 100))
     axes[0].set_ylabel("width [nm]")
     axes[0].set_xlabel("center [nm]")
     axes[1].set_xlabel("wavelength [nm]")
@@ -148,21 +154,38 @@ def main(mode, v=30, alpha=11):
     F1 = make_filter(c2, w2)
     F2 = make_filter(c3, w3)
     F3 = make_filter(c4, w4)
-    f0, = axes[1].plot(wavelengths, 100 * F0(wavelengths), color=BLUE)
-    f1, = axes[1].plot(wavelengths, 100 * F1(wavelengths), color=ORANGE)
-    f2, = axes[1].plot(wavelengths, 100 * F2(wavelengths), color=RED)
-    f3, = axes[1].plot(wavelengths, 100 * F3(wavelengths), color=BLACK)
+    if mode == "C":
+        f0, = axes[1].plot(wavelengths, 100 * F0(wavelengths), color=BLUE)
+        f1, = axes[1].plot(wavelengths, 100 * F1(wavelengths), color=GREEN)
+        f2, = axes[1].plot(wavelengths, 100 * F2(wavelengths), color=ORANGE)
+        f3, = axes[1].plot(wavelengths, 100 * F3(wavelengths), color=RED)
+    else:
+        f0, = axes[1].plot(wavelengths, 100 * F0(wavelengths), color=BLUE)
+        f1, = axes[1].plot(wavelengths, 100 * F1(wavelengths), color=ORANGE)
+        f2, = axes[1].plot(wavelengths, 100 * F2(wavelengths), color=RED)
+        f3, = axes[1].plot(wavelengths, 100 * F3(wavelengths), color=BLACK)
     axes[1].plot(wavelengths, np.zeros(wavelengths.shape), color=BLACK)
+    M = get_mirror()
+    Q = get_detector()
+    S = get_solar()
+    signal = M(wavelengths) * Q(wavelengths) * ref_rock(wavelengths,alpha) * S(wavelengths)
+    signal = signal / np.max(signal) * 100
+    # axes[1].plot(wavelengths, signal.T, color=BLACK)
 
     df = pd.read_csv("data/texp.csv")
     t = interp1d(df.alpha, df["texp10"], fill_value="extrapolate")
     t_exp = t(alpha) / (v / 10) / 1000
 
     # axes[0].set_title(f"phase angle = {alpha}°")
-    scatter = axes[0].scatter([c1, c2, c3, c4], [w1, w2, w3, w4],
-                              color=[BLUE, ORANGE, RED, BLACK], edgecolor=BLACK)
+    if mode == "C":
+        scatter = axes[0].scatter([c1, c2, c3, c4], [w1, w2, w3, w4],
+                                  color=[BLUE, GREEN, ORANGE, RED], edgecolor=BLACK)
+    else:
+        scatter = axes[0].scatter([c1, c2, c3, c4], [w1, w2, w3, w4],
+                                  color=[BLUE, ORANGE, RED, BLACK], edgecolor=BLACK)
     DraggableScatter(scatter, [f0, f1, f2, f3], fig, v, mode)
 
 
 if __name__ == "__main__":
-    main("B")
+    # main("A", alpha=11)
+    main("D", alpha=11)

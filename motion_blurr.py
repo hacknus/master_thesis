@@ -10,6 +10,16 @@ def omega(t, v, b):
     return (v / b) / (1 + (v / b * t) ** 2) / np.pi * 180
 
 
+def get_possible_detector_time(t):
+    print(f"{t=}")
+    det_time = 0.220 / 1000
+    print(f"{det_time}")
+    t = np.ceil(t / det_time) * det_time
+    t = np.max([t, det_time])
+    print(f"final: {t=}")
+    return t
+
+
 if __name__ == "__main__":
     CoCa = Camera()
     theta = np.sqrt(CoCa.Omega) / np.pi * 180
@@ -46,7 +56,8 @@ if __name__ == "__main__":
         ind1 = np.where(np.abs(t_label - t1) <= tol1)
         ind2 = np.where(np.abs(t_label - t2) <= tol2)
         if alpha_2[ind2] != 0:
-            axes[0].text(alpha_2[ind2] - 2, 1000 * theta / o2[ind2] + 1, "+" + str(t_label), horizontalalignment='right',
+            axes[0].text(alpha_2[ind2] - 2, 1000 * theta / o2[ind2] + 1, "+" + str(t_label),
+                         horizontalalignment='right',
                          verticalalignment='top')
         else:
             axes[0].text(alpha_2[ind2] + 1, 1000 * theta / o2[ind2] + 1, t_label, horizontalalignment='right',
@@ -56,7 +67,8 @@ if __name__ == "__main__":
                          verticalalignment='top')
         if t_label in [0, 30]:
             if alpha_1[ind1] != 0:
-                axes[0].text(alpha_1[ind1] - 1, 1000 * theta / o1[ind1] + 0.5, "+" + str(t_label), horizontalalignment='right',
+                axes[0].text(alpha_1[ind1] - 1, 1000 * theta / o1[ind1] + 0.5, "+" + str(t_label),
+                             horizontalalignment='right',
                              verticalalignment='top')
             else:
                 axes[0].text(alpha_1[ind1] + 1, 1000 * theta / o1[ind1] + 0.1, t_label, horizontalalignment='right',

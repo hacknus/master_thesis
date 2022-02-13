@@ -122,4 +122,4 @@ def main(mode="A", r_h=1.0, b=1000):
 
 
 if __name__ == "__main__":
-    main(mode="A", r_h=0.85)
+    main(mode="A", r_h=1)
